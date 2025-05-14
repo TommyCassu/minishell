@@ -23,7 +23,7 @@ RANLIB		= ranlib
 
 GCC			= gcc
 
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -g
 
 all:		${NAME}
 

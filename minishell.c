@@ -6,18 +6,19 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 09:24:32 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/13 11:48:03 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:51:31 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 
 int	main(void)
 {
 	char	*input;
 	char	**token;
 	int i;
-
+	
 	while (1)
 	{
 		input = readline("minishell$ ");
@@ -34,8 +35,10 @@ int	main(void)
 		while (token[i])
 		{
 			printf("[%s] ", token[i]);
+			free(token[i]);
 			i++;
 		}
+		free(token);
 		printf("\n");
         free(input);
 	}

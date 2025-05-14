@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 11:24:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/13 12:17:55 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/14 16:22:40 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,74 +83,53 @@ char	*ft_strcpy(const char *src, char *dest, int debut, int fin)
 	return (dest);
 }
 
-char	**ft_set_string(const char *str, char **result, char c)
+char	**ft_set_string(const char *str, char **result, int *i, int *compteur)
 {
-	int		i;
 	int		debut;
-	int		aw;
 
-	i = 0;
-	aw = 0;
-	while (str[i] != '\0')
+	while (str[*i] != ' ' && str[*i] != '\0')
 	{
-		while (str[i] == c)
-			i++;
-		debut = i;
-		while (str[i] != c && str[i] != '\0')
-			i++;
-		if (aw < ft_countword(str))
+		debut = *i;
+		if (str[*i] == '"' || str[*i] == '\'')
 		{
-			result[aw] = (char *)malloc(sizeof(char) * ((i - 1)
-						- debut + 1) + 1);
-			if (!result[aw])
+			debut = ++(*i);
+			while (str[*i] != '"' && str[*i] != '\'' && str[*i] != '\0')
+				(*i)++;
+		}
+		else 
+			while (str[*i] != ' ' && str[*i] != '\0')
+				(*i)++;
+		if (str[*i - 1] != '\0')
+		{
+			result[*compteur] = (char *)malloc(sizeof(char) * ((*i - 1) - debut + 1) + 1);
+			if (!result[*compteur])
 				return (NULL);
-			result[aw] = ft_strcpy(str, result[aw], debut, (i - 1));
-			aw++;
+			result[*compteur] = ft_strcpy(str, result[*compteur], debut, (*i - 1));
+			(*compteur)++;
 		}
 	}
-	result[aw] = 0;
-	return (result);
-}
-
-char *ft_cutting()
-{
-	
-}
-char **test(const char *str, char **result, char separator)
-{
-	int i;
-	int debut;
-	int aw;
-	
-	i = 0;
-	aw = 0;
-	while (str[i] != '\0')
-	{
-		while (str[i] == ' ')
-			i++;
-		debut = i;
-		if (str[i] == '\'' || str[i] == '"')
-			ft_cutting(str, str[i]);
-		else
-
-	}
-	result[aw] = 0;
 	return (result);
 }
 
 char	**tokenizer(char const *str)
 {
 	char	**result;
+	int	compteur;
+	int i;
 
+	i = 0;
+	compteur = 0;
 	result = (char **)malloc(sizeof(char *) * (ft_countword(str) + 1));
-	printf("%d", ft_countword(str));
 	if (!result)
 		return (NULL);
-	if (!ft_set_string(str, result, ' '))
+	//if (!verif())
+	//	return (NULL);
+	while (str[i] != '\0')
 	{
-		ft_free(result);
-		free(result);
-		return (NULL);
+		while (str[i] == ' ')
+			i++;
+		ft_set_string(str, result, &i, &compteur);
 	}
+	result[ft_countword(str)] = 0;
 	return (result);
 }
