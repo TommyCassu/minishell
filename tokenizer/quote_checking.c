@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:48:59 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/15 20:04:12 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/16 00:52:38 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	check_symbol(const char *str, int i)
 	char	*symbol;
 	int		j;
 
-	symbol = "&<>|";
+	symbol = "&<>|()";
 	j = 0;
 	while (symbol[j])
 	{

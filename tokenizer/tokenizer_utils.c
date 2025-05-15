@@ -54,19 +54,9 @@ char	*ft_strcpy(const char *src, char *dest, int debut, int fin)
 	i = 0;
 	while (debut <= fin)
 	{
-		if (src[debut])
-		{
-			if (src[debut] != '\"' && src[debut] != '\'')
-			{
-				dest[i] = src[debut];
-				i++;
-				debut++;
-			}
-			else
-				debut++;
-		}
-		else
-			break ;
+		dest[i] = src[debut];
+		i++;
+		debut++;
 	}
 	dest[i] = '\0';
 	return (dest);
