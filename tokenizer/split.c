@@ -1,42 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 11:24:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/14 16:22:40 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/15 00:43:38 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_free(char **result)
-{
-	int	i;
-
-	i = 0;
-	while (result[i])
-	{
-		free(result[i]);
-		i++;
-	}
-}
-
-int	is_quote(const char *str, int i)
-{
-	char	quote;
-
-	quote = str[i];
-	
-	i++;
-	while(str[i] && str[i] != quote)
-		i++;
-	if (str[i] == quote)
-		i++;
-	return (i);
-}
 int	ft_countword(const char *str)
 {
 	int	i;
@@ -92,9 +67,10 @@ char	**ft_set_string(const char *str, char **result, int *i, int *compteur)
 		debut = *i;
 		if (str[*i] == '"' || str[*i] == '\'')
 		{
-			debut = ++(*i);
+			(*i)++;
 			while (str[*i] != '"' && str[*i] != '\'' && str[*i] != '\0')
 				(*i)++;
+			(*i)++;
 		}
 		else 
 			while (str[*i] != ' ' && str[*i] != '\0')
@@ -104,14 +80,14 @@ char	**ft_set_string(const char *str, char **result, int *i, int *compteur)
 			result[*compteur] = (char *)malloc(sizeof(char) * ((*i - 1) - debut + 1) + 1);
 			if (!result[*compteur])
 				return (NULL);
-			result[*compteur] = ft_strcpy(str, result[*compteur], debut, (*i - 1));
+			result[*compteur] = ft_strcpy(str, result[*compteur], debut, ((*i) - 1));
 			(*compteur)++;
 		}
 	}
 	return (result);
 }
 
-char	**tokenizer(char const *str)
+char	**ft_splits(char const *str)
 {
 	char	**result;
 	int	compteur;
@@ -122,8 +98,6 @@ char	**tokenizer(char const *str)
 	result = (char **)malloc(sizeof(char *) * (ft_countword(str) + 1));
 	if (!result)
 		return (NULL);
-	//if (!verif())
-	//	return (NULL);
 	while (str[i] != '\0')
 	{
 		while (str[i] == ' ')

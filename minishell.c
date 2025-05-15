@@ -6,40 +6,45 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 09:24:32 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/14 15:51:31 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/15 00:03:04 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-int	main(void)
+void	ft_print(char **str)
 {
-	char	*input;
-	char	**token;
 	int i;
 	
+	i = 0;
+	while (str[i])
+	{
+		printf("[%s] ", str[i]);
+		free(str[i]);
+		i++;
+	}
+	free(str);
+	printf("\n");
+}
+
+int main(void)
+{
+	char	*input;
+	char	*clean;
+	char	**split_string;
+
 	while (1)
 	{
 		input = readline("minishell$ ");
 		if (!input)
 			break ;
-		if (*input)
-		add_history(input);
 		if (strcmp(input, "exit") == 0) {
             free(input);
             break;
         }
-		token = tokenizer(input);
-		i = 0;
-		while (token[i])
-		{
-			printf("[%s] ", token[i]);
-			free(token[i]);
-			i++;
-		}
-		free(token);
-		printf("\n");
-        free(input);
+		clean = ft_clean_comment(input);
+		/* Verif quote ouvert mais non ferme (a faire) */
+		split_string = ft_splits(clean);
+		ft_print(split_string);
 	}
 }
