@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/16 00:40:52 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/16 15:12:15 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,15 @@
 
 typedef enum 
 {
-    COMMAND,
-    ARGUMENT,
-    OPERATION,
+    WORD,
+    SINGLEQUOTE,
+    DOUBLEQUOTE,
+    L_REDIRECT,
+    R_REDIRECT,
+    HEREDOC,
+    APP_REDIRECT,
+    START_SUBSHELL,
+    END_SUBSHELL,
     PIPE
 } t_type;
 
@@ -49,4 +55,5 @@ char	*extract_symbol_token(const char *str, int *i);
 t_token	*create_token(void *content);
 void	ft_lstadd_backs(t_token **tokens, t_token *new);
 void	add_type(t_token *tokens);
+t_type	get_type(t_token *tokens);
 #endif

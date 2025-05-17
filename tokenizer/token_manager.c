@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 22:16:18 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/16 00:38:07 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/16 15:25:24 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,31 @@ void	add_type(t_token *tokens)
 {
 	while (tokens)
 	{
-		if (tokens->value[0] == '>')
-			tokens->type = OPERATION;
-		else if (tokens->value[0] == '|')
-			tokens->type = PIPE;
+		tokens->type = get_type(tokens);
 		tokens = tokens->next;
 	}
 }
 // faire la fonction qui free la liste
 
-
+t_type	get_type(t_token *tokens)
+{
+	if (ft_strchr(tokens->value,'\''))
+		return (SINGLEQUOTE);
+	else if (ft_strchr(tokens->value,'\"'))
+		return (DOUBLEQUOTE);
+	else if(tokens->value[0] == '<' && tokens->value[1] == '\0')
+		return (L_REDIRECT);
+	else if(tokens->value[0] == '>' && tokens->value[1] == '\0')
+		return (R_REDIRECT);
+	else if(tokens->value[0] == '<' && tokens->value[1] == '<')
+		return (HEREDOC);
+	else if(tokens->value[0] == '>' && tokens->value[1] == '>')
+		return (APP_REDIRECT);
+	else if(tokens->value[0] == '(')
+		return (START_SUBSHELL);
+	else if(tokens->value[0] == ')')
+		return (END_SUBSHELL);
+	else if(tokens->value[0] == '|')
+		return (PIPE);
+	return (WORD);
+}

@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 09:24:32 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/16 00:40:37 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/16 15:16:28 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_tokens(t_token *tokens)
 {
 	while (tokens)
 	{
-		printf("[%d : %s ]", tokens->type, tokens->value);
+		printf("[%d : %s ]\n", tokens->type, tokens->value);
 		tokens = tokens->next;
 	}
 }
