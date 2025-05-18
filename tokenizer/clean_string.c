@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 22:14:49 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/15 20:14:14 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/18 00:59:40 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,20 @@ char	*ft_clean_comment(char *str)
 	char	*result;
 
 	i = 0;
-	while (str[i] != '#')
+	while (str[i])
 	{
 		if (str[i] == '\0')
 			return (str);
+		if (str[i] == '#' && check_in_quote(str, i) == 0)
+			break ;
 		i++;
 	}
 	result = malloc(sizeof(char) * i + 1);
 	i = 0;
-	while (str[i] != '#' && str[i] != '\0')
+	while (str[i])
 	{
+		if (str[i] == '#' && check_in_quote(str, i) == 0)
+			break ;
 		result[i] = str[i];
 		i++;
 	}

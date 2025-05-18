@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/16 15:12:15 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/18 01:51:46 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@
 
 typedef enum 
 {
-    WORD,
-    SINGLEQUOTE,
-    DOUBLEQUOTE,
-    L_REDIRECT,
-    R_REDIRECT,
-    HEREDOC,
-    APP_REDIRECT,
-    START_SUBSHELL,
-    END_SUBSHELL,
-    PIPE
+    WORD,           // 0
+    SINGLEQUOTE,    // 1
+    DOUBLEQUOTE,    // 2
+    L_REDIRECT,     // 3
+    R_REDIRECT,     //4
+    HEREDOC,        //5
+    APP_REDIRECT,   //6
+    START_SUBSHELL, //7
+    END_SUBSHELL,   //8
+    PIPE            //9
 } t_type;
 
 typedef struct token
@@ -56,4 +56,7 @@ t_token	*create_token(void *content);
 void	ft_lstadd_backs(t_token **tokens, t_token *new);
 void	add_type(t_token *tokens);
 t_type	get_type(t_token *tokens);
+
+int	ft_count_quote(char *str);
+int verif_valid_operator(t_token *tokens);
 #endif

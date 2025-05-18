@@ -17,6 +17,7 @@ int	ft_countword(const char *str)
 	int	i;
 	int	count;
 	int	in_word;
+	char	tmp;
 
 	i = 0;
 	count = 0;
@@ -32,7 +33,8 @@ int	ft_countword(const char *str)
 		if (check_symbol(str, i) && !check_in_quote(str, i))
 		{
 			count++;
-			while (check_symbol(str, i))
+			tmp = str[i];
+			while (check_symbol(str, i) && str[i] == tmp)
 				i++;
 			in_word = 0;
 			continue ;
@@ -65,11 +67,16 @@ char	*ft_strcpy(const char *src, char *dest, int debut, int fin)
 char	*extract_symbol_token(const char *str, int *i)
 {
 	int		start;
+	int		tmp;
 	char	*token;
 
 	start = *i;
-	while (check_symbol(str, *i))
+	tmp = str[*i];
+	while (check_symbol(str, *i) && str[*i] == tmp)
+	{
 		(*i)++;
+	}
+		
 	token = (char *)malloc(sizeof(char) * (*i - start + 1));
 	token = ft_strcpy(str, token, start, *i - 1);
 	return (token);

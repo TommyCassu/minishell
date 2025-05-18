@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 09:24:32 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/16 15:16:28 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/18 21:44:52 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	test(char **str)
 		i++;
 	}
 	add_type(list);
+	if (verif_valid_operator(list))
+		return ;
 	print_tokens(list);
 	t_token *tmp;
 	while (list)
@@ -43,6 +45,7 @@ void	test(char **str)
 		free(tmp->value);
 		free(tmp);
 	}
+	free(str);
 }
 
 void	ft_print(char **str)
@@ -52,11 +55,9 @@ void	ft_print(char **str)
 	i = 0;
 	while (str[i])
 	{
-		printf("[%s] ", str[i]);
 		free(str[i]);
 		i++;
 	}
-	printf("\n");
 }
 
 int	main(void)
@@ -64,7 +65,7 @@ int	main(void)
 	char	*input;
 	char	*clean;
 	char	**split_string;
-
+	
 	while (1)
 	{
 		input = readline("minishell$ ");
@@ -76,10 +77,16 @@ int	main(void)
 			break ;
 		}
 		clean = ft_clean_comment(input);
-		/* Verif quote ouvert mais non ferme (a faire) */
+		/* Rajouter le free les value malloc apres ma verif si cela doit s'arreter  */
+		if (ft_count_quote(clean))
+		{
+			printf("missing closing quote\n");
+			continue ;
+		}		
 		split_string = ft_splits(clean);
 		free(clean);
-		//ft_print(split_string);
+		
 		test(split_string);
+		//ft_print(split_string);
 	}
 }
