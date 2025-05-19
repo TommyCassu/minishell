@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/18 01:51:46 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/19 16:45:13 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,5 @@ t_type	get_type(t_token *tokens);
 
 int	ft_count_quote(char *str);
 int verif_valid_operator(t_token *tokens);
+int verif_input(char *str);
 #endif

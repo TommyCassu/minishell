@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 09:24:32 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/18 21:44:52 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/19 16:44:42 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,11 @@ int	main(void)
 		{
 			free(input);
 			break ;
+		}
+		if (verif_input(input))
+		{
+			free(input);
+			continue ;
 		}
 		clean = ft_clean_comment(input);
 		/* Rajouter le free les value malloc apres ma verif si cela doit s'arreter  */
