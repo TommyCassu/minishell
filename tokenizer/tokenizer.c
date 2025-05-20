@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 11:24:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/19 23:24:26 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/20 17:19:22 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,9 @@ t_token	*tokenize(char *str)
 	int		i;
 	i = 0;
 	compteur = 0;
-	str = ft_clean_comment(str);
 	if (verif_input(str))
-	{
-		free(str);
 		return (NULL);
-	} // check error
-		
+	str = ft_clean_comment(str);
 	result = (char **)malloc(sizeof(char *) * (ft_countword(str) + 1));
 	if (!result)
 		return (NULL);

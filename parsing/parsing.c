@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 00:26:24 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/19 23:49:01 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/20 17:18:29 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,11 +123,20 @@ int parsing(t_token *tokens)
 
 int verif_input(char *str)
 {
+    int i;
+
+    i = 0;
     if (!str)
         return (1);
     if (str[0] == '!' && !str[1])
         return (1);
-    if (str[0] == ':' && !str[1])
+    else if (str[0] == ':' && !str[1])
+        return (1);
+    else if (str[0] == '\0' && !str[1])
+        return (1);
+    while (str[i] == ' ' || str[i] == '\t')
+        i++;
+    if (str[i] == '\n')
         return (1);
     return (0);
 }
