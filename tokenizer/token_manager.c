@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 22:16:18 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/16 15:25:24 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/20 00:05:54 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_token	*create_token(void *content)
 	token = malloc(sizeof(t_token));
 	if (!token)
 		return (NULL);
-	token->value = content;
+	token->value = ft_strdup((const char *)content);
 	token->next = NULL;
 	return (token);
 }
@@ -49,7 +49,6 @@ void	add_type(t_token *tokens)
 		tokens = tokens->next;
 	}
 }
-// faire la fonction qui free la liste
 
 t_type	get_type(t_token *tokens)
 {
@@ -73,3 +72,24 @@ t_type	get_type(t_token *tokens)
 		return (PIPE);
 	return (WORD);
 }
+
+t_token	*parse_line(char **str)
+{
+	t_token	*list = NULL;
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		t_token *t1 = create_token(str[i]);
+		free(str[i]);
+		ft_lstadd_backs(&list, t1);
+		i++;
+	}
+	free(str);
+	add_type(list);
+	if (parsing(list))
+		return (NULL);
+	return (list);
+}
+//echo < "toto va s'appeler" titi | donc >> yui << wer

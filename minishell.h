@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/19 16:45:13 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/19 23:38:27 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <string.h> // a retirer
 
 typedef enum 
 {
@@ -42,22 +43,30 @@ typedef struct token
 }	t_token;
 
 /* Spliting*/
-char	**ft_splits(char const *str);
+t_token *tokenize(char *str);
 char    *ft_clean_comment(char *str);
 /*      Spliting Utils */
 void	ft_free(char **result);
-int		is_quote(const char *str, int i);
-int		check_in_quote(const char *str, int i);
-int		check_symbol(const char *str, int i);
-int		ft_countword(const char *str);
-char	*ft_strcpy(const char *src, char *dest, int debut, int fin);
-char	*extract_symbol_token(const char *str, int *i);
+int		is_quote(char *str, int i);
+int		check_in_quote(char *str, int i);
+int		check_symbol(char *str, int i);
+int		ft_countword(char *str);
+char	*ft_strcpy(char *src, char *dest, int debut, int fin);
+char	*extract_symbol_token(char *str, int *i);
 t_token	*create_token(void *content);
 void	ft_lstadd_backs(t_token **tokens, t_token *new);
 void	add_type(t_token *tokens);
 t_type	get_type(t_token *tokens);
 
 int	ft_count_quote(char *str);
-int verif_valid_operator(t_token *tokens);
 int verif_input(char *str);
+void	ft_clean(t_token *tokens);
+
+t_token	*parse_line(char **str);
+void	print_tokens(t_token *tokens);
+/* Verif error */
+int parsing(t_token *tokens);
+int verif_first_token(t_token *tokens);
+int verif_other_tokens(t_token *tokens);
+int verif_operator_utils(t_token *token);
 #endif

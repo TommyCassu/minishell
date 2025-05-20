@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-int	ft_countword(const char *str)
+int	ft_countword(char *str)
 {
 	int	i;
 	int	count;
@@ -49,7 +49,7 @@ int	ft_countword(const char *str)
 	return (count);
 }
 
-char	*ft_strcpy(const char *src, char *dest, int debut, int fin)
+char	*ft_strcpy(char *src, char *dest, int debut, int fin)
 {
 	int	i;
 
@@ -64,7 +64,7 @@ char	*ft_strcpy(const char *src, char *dest, int debut, int fin)
 	return (dest);
 }
 
-char	*extract_symbol_token(const char *str, int *i)
+char	*extract_symbol_token(char *str, int *i)
 {
 	int		start;
 	int		tmp;
@@ -94,7 +94,7 @@ void	ft_free(char **result)
 	}
 }
 
-int	is_quote(const char *str, int i)
+int	is_quote(char *str, int i)
 {
 	char	quote;
 

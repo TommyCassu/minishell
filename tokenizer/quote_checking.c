@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:48:59 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/16 00:52:38 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/20 00:05:22 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	quote_update(int *single_quote, int *double_quote, char value)
 	}
 	else
 	{
-		if (*single_quote == 0)
+		if (*single_quote == 0 && *double_quote == 0)
 			*single_quote = 1;
 		else
 			*single_quote = 0;
 	}
 }
 
-int	check_in_quote(const char *str, int i)
+int	check_in_quote(char *str, int i)
 {
 	int	j;
 	int	single_quote;
@@ -56,7 +56,7 @@ int	check_in_quote(const char *str, int i)
 	return (0);
 }
 
-int	check_symbol(const char *str, int i)
+int	check_symbol(char *str, int i)
 {
 	char	*symbol;
 	int		j;

@@ -6,13 +6,13 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 11:24:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/15 20:16:02 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/19 23:24:26 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*extract_full_token(const char *str, int *i)
+char	*extract_full_token(char *str, int *i)
 {
 	int		start;
 	int		j;
@@ -41,7 +41,7 @@ char	*extract_full_token(const char *str, int *i)
 	return (token);
 }
 
-char	**ft_set_string(const char *str, char **result, int *i, int *count)
+char	**ft_set_string(char *str, char **result, int *i, int *count)
 {
 	while (str[*i] && str[*i] == ' ')
 		(*i)++;
@@ -55,14 +55,20 @@ char	**ft_set_string(const char *str, char **result, int *i, int *count)
 	return (result);
 }
 
-char	**ft_splits(char const *str)
+t_token	*tokenize(char *str)
 {
 	char	**result;
 	int		compteur;
 	int		i;
-
 	i = 0;
 	compteur = 0;
+	str = ft_clean_comment(str);
+	if (verif_input(str))
+	{
+		free(str);
+		return (NULL);
+	} // check error
+		
 	result = (char **)malloc(sizeof(char *) * (ft_countword(str) + 1));
 	if (!result)
 		return (NULL);
@@ -73,5 +79,6 @@ char	**ft_splits(char const *str)
 		ft_set_string(str, result, &i, &compteur);
 	}
 	result[ft_countword(str)] = 0;
-	return (result);
+	free(str);
+	return (parse_line(result));
 }
