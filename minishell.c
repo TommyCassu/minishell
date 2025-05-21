@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 09:24:32 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/19 22:25:40 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/21 01:28:17 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(void)
 {
 	char	*input;
 	t_token	*tokens;
+	t_cmd	*cmd;
 	
 	while (1)
 	{
@@ -27,12 +28,18 @@ int	main(void)
 			free(input);
 			break ;
 		}
+		//add_history(input);
 		tokens = tokenize(input);
 		if (tokens)
 		{
+			cmd = parse_cmd(tokens);
+			print_cmd(cmd);
+		}
+		/*if (tokens)
+		{
 			print_tokens(tokens);
 			ft_clean(tokens);
-		}
+		}*/
 	}
 	//clean_minishell();
 	return (0);

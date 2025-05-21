@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 00:26:24 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/20 17:18:29 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/21 02:20:11 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int verif_first_token(t_token *tokens)
     if (tmp && (tmp->type == PIPE || tmp->type == L_REDIRECT || tmp->type == R_REDIRECT
         || tmp->type == HEREDOC || tmp->type == APP_REDIRECT))
     {
-        printf("Minishell : syntax error1\n");
         ft_clean(tokens);
         return (1);
     }
@@ -103,7 +102,6 @@ int parsing(t_token *tokens)
     if (verif_first_token(tokens))
     {
         printf("code 1\n");
-        ft_clean(tokens);
         return (1);
     }
     else if  (verif_other_tokens(tokens))

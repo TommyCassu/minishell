@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/19 23:38:27 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/21 01:26:36 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,18 @@ typedef struct token
     struct token *next;
 }	t_token;
 
+typedef struct cmd
+{
+    char    **arguments;
+    char    *l_redirect;
+    char    *r_redirect;
+    char    *app_redirect;
+    int     previous_pipe;
+    int     next_pipe;
+
+    struct cmd *next;
+}	t_cmd;
+
 /* Spliting*/
 t_token *tokenize(char *str);
 char    *ft_clean_comment(char *str);
@@ -69,4 +81,14 @@ int parsing(t_token *tokens);
 int verif_first_token(t_token *tokens);
 int verif_other_tokens(t_token *tokens);
 int verif_operator_utils(t_token *token);
+
+/* Parsing cmd manager */
+void    init_cmd(t_cmd *cmd);
+void    add_arg(t_cmd *cmd, char *value);
+void print_cmd(t_cmd *cmd);
+void	add_l_red(t_cmd *cmd, t_token **tokens);
+void	add_r_red(t_cmd *cmd, t_token **tokens);
+void	add_app_red(t_cmd *cmd, t_token **tokens);
+t_cmd   *parse_cmd(t_token *tokens);
+void print_cmd(t_cmd *cmd); // a retirer juste pour print 
 #endif
