@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 09:24:32 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/21 01:28:17 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/23 02:38:53 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(void)
 			cmd = parse_cmd(tokens);
 			print_cmd(cmd);
 		}
+		//ft_free_cmd_lst(cmd);
 		/*if (tokens)
 		{
 			print_tokens(tokens);

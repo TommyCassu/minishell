@@ -6,11 +6,26 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 23:45:22 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/21 02:31:54 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/23 02:35:15 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void    ft_free_token_list(t_token *tokens)
+{
+    t_token	*tmp;
+	if (tokens)
+	{
+		while (tokens)
+			{
+				tmp = tokens;
+				tokens = tokens->next;
+				free(tmp->value);
+				free(tmp);
+			}
+	}
+}
 
 void    init_cmd(t_cmd *cmd)
 {
@@ -82,5 +97,6 @@ t_cmd   *parse_cmd(t_token *tokens)
         }
         tmp = tmp->next;
     }
+    ft_free_token_list(tokens);
     return (head_cmd);
 }
