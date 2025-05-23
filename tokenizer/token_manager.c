@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 22:16:18 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/22 21:14:48 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/23 14:44:35 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ t_token	*parse_line(char **str)
 	if (parsing(list))
 		return (NULL);
 	expansion(list);
+	clear_quote(list);
 	return (list);
 }
 //echo < "toto va s'appeler" titi | donc >> yui << wer

@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 21:05:37 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/23 03:00:17 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/23 14:37:32 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ char    *expand_and_delete(char    *value, char *variable, char *var_env)
     
     j = 0;
     i = 0;
-    while (value[i] != '$' && value[i] && check_in_quote(value, i) != 1)
+    while ((value[i] != '$' && value[i]) || check_in_quote(value, i) == 1)
         i++;
-    printf("%d", check_in_quote(value, i));
     j = i + 1 + ft_strlen(variable);
     
     tmp = ft_substr(value, 0, i);

@@ -1,4 +1,4 @@
-SRC			= minishell.c tokenizer/clean_string.c tokenizer/tokenizer.c tokenizer/tokenizer_utils.c tokenizer/quote_checking.c tokenizer/token_manager.c parsing/parsing.c utils/utils.c parsing/cmd_manager.c parsing/cmd_manager_utils.c expansion/expansion.c
+SRC			= minishell.c tokenizer/tokenizer.c tokenizer/tokenizer_utils.c tokenizer/quote_checking.c tokenizer/token_manager.c parsing/parsing.c utils/utils.c parsing/cmd_manager.c parsing/clean_string.c parsing/cmd_manager_utils.c expansion/expansion.c
 
 SRCS		= ${SRC}
 

@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 22:14:49 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/18 00:59:40 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/23 15:09:17 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,59 @@ char	*ft_clean_comment(char *str)
 	result[i] = '\0';
 	free(str);
 	return (result);
+}
+
+char *remove_quotes(char *input)
+{
+	char	*result;
+	char	quote;
+	int i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	result = malloc(sizeof(char) * ft_strlen(input) + 1);
+	while (input[i])
+	{
+		if ((input[i] == '\"' || input[i] == '\'') )
+		{
+			if (quote == 0)
+				quote = input[i];
+			else if (input[i] == quote)
+				quote = 0;
+			else
+				result[j++] = input[i];
+		}
+		else
+			result[j++] = input[i];
+		i++;
+	}
+	result[j] = '\0';
+	return (result);
+}
+
+int	ft_quote(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\"' || str[i] == '\'')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+void	clear_quote(t_token *tokens)
+{
+	t_token	*tmp;
+
+	tmp = tokens;
+	while (tmp)
+	{
+		if (ft_quote(tmp->value))
+			tmp->value = remove_quotes(tmp->value);
+		tmp = tmp->next;
+	}
 }
