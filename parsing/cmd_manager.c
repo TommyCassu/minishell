@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 23:45:22 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/23 02:35:15 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/26 02:10:33 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,28 @@ void    ft_free_token_list(t_token *tokens)
 				free(tmp->value);
 				free(tmp);
 			}
+	}
+}
+
+void    ft_free_cmd_list(t_cmd *cmd)
+{
+    t_cmd	*tmp;
+	int i;
+	
+	
+	
+	while (cmd)
+	{
+		i = 0;
+		tmp = cmd;
+		cmd = cmd->next;
+		while (tmp->arguments[i])
+		{
+			free(tmp->arguments[i]);
+			i++;
+		}
+		free(tmp->arguments);
+		free(tmp);
 	}
 }
 
@@ -76,7 +98,7 @@ t_cmd   *parse_cmd(t_token *tokens)
     head_cmd = cmd;
     while (tmp)
     {
-        if (tmp->type == WORD || tmp->type == SINGLEQUOTE || tmp->type == DOUBLEQUOTE)
+        if (tmp->type == WORD)
             add_arg(cmd, tmp->value);
         else if (tmp->type == L_REDIRECT)
             add_l_red(cmd, &tmp);

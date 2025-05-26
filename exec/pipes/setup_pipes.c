@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   setup_pipes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/13 09:24:32 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/26 02:00:47 by tcassu           ###   ########.fr       */
+/*   Created: 2025/05/26 02:07:55 by tcassu            #+#    #+#             */
+/*   Updated: 2025/05/26 02:07:56 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
-int	main(void)
+/* Redirect stdin to read from pipe */
+void	setup_pipe_in(int pipefd[2])
 {
-	char	*input;
-	t_token	*tokens;
-	t_cmd	*cmd;
-	
-	while (1)
-	{
-		input = readline("minishell$ ");
-		if (!input)
-			break ;
-		if (strcmp(input, "exit") == 0)
-		{
-			free(input);
-			break ;
-		}
-		add_history(input);
-		if (input)
-			tokens = tokenize(input);
-		if (tokens)
-		{
-			cmd = parse_cmd(tokens);
-			exec_command(cmd);
-			ft_free_cmd_list(cmd);
-		}
-	}
-	return (0);
+	dup2(pipefd[PIPE_READ], STDIN_FILENO);
+	close_pipe(pipefd);
+}
+
+/* Redirect stdout to write to pipe */
+void	setup_pipe_out(int pipefd[2])
+{
+	dup2(pipefd[PIPE_WRITE], STDOUT_FILENO);
+	close_pipe(pipefd);
 }

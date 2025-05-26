@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   exec_single.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/13 09:24:32 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/26 02:00:47 by tcassu           ###   ########.fr       */
+/*   Created: 2025/05/26 02:08:10 by tcassu            #+#    #+#             */
+/*   Updated: 2025/05/26 02:08:11 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	main(void)
+/* Execute builtin with redirections setup */
+static int	exec_builtin_with_redir(t_cmd *cmd)
 {
-	char	*input;
-	t_token	*tokens;
-	t_cmd	*cmd;
-	
-	while (1)
-	{
-		input = readline("minishell$ ");
-		if (!input)
-			break ;
-		if (strcmp(input, "exit") == 0)
-		{
-			free(input);
-			break ;
-		}
-		add_history(input);
-		if (input)
-			tokens = tokenize(input);
-		if (tokens)
-		{
-			cmd = parse_cmd(tokens);
-			exec_command(cmd);
-			ft_free_cmd_list(cmd);
-		}
-	}
-	return (0);
+	if (setup_redirs(cmd) == -1)
+		return (GENERAL_ERROR);
+	return (exec_builtin(cmd));
+}
+
+/* Execute a single command (no pipes) - builtin or external */
+int	exec_single(t_cmd *cmd)
+{
+	if (is_builtin(cmd->arguments[0]))
+		return (exec_builtin_with_redir(cmd));
+	return (exec_external(cmd));
 }

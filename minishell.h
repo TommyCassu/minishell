@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/23 14:59:10 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/26 02:12:28 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,29 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <string.h> // a retirer
+# include <stdbool.h> // a retirer
+
+#include <fcntl.h>
+#include <sys/wait.h>
+
+#define PIPE_READ  0
+#define PIPE_WRITE 1
+#define CMD_NOT_FOUND 127
+#define EXEC_ERROR 126
+#define GENERAL_ERROR 1
+#define SUCCESS 0
+#define FILE_PERMS 0644
 
 typedef enum 
 {
-    WORD,           // 0
-    SINGLEQUOTE,    // 1
-    DOUBLEQUOTE,    // 2
-    L_REDIRECT,     // 3
-    R_REDIRECT,     //4
-    HEREDOC,        //5
-    APP_REDIRECT,   //6
-    START_SUBSHELL, //7
-    END_SUBSHELL,   //8
-    PIPE            //9
+    WORD,
+    L_REDIRECT,
+    R_REDIRECT,
+    HEREDOC,
+    APP_REDIRECT,
+    START_SUBSHELL,
+    END_SUBSHELL,
+    PIPE
 } t_type;
 
 typedef struct token
@@ -58,12 +68,12 @@ typedef struct cmd
 t_token *tokenize(char *str);
 char    *ft_clean_comment(char *str);
 /*      Spliting Utils */
-void	ft_free(char **result);
+void	_ft_free(char **result);
 int		is_quote(char *str, int i);
 int		check_in_quote(char *str, int i);
 int		check_symbol(char *str, int i);
-int		ft_countword(char *str);
-char	*ft_strcpy(char *src, char *dest, int debut, int fin);
+int		_ft_countword(char *str);
+char	*_ft_strcpy(char *src, char *dest, int debut, int fin);
 char	*extract_symbol_token(char *str, int *i);
 t_token	*create_token(void *content);
 void	ft_lstadd_backs(t_token **tokens, t_token *new);
@@ -90,11 +100,50 @@ void	add_l_red(t_cmd *cmd, t_token **tokens);
 void	add_r_red(t_cmd *cmd, t_token **tokens);
 void	add_app_red(t_cmd *cmd, t_token **tokens);
 t_cmd   *parse_cmd(t_token *tokens);
-void print_cmd(t_cmd *cmd); // a retirer juste pour print 
-void	clear_quote(t_token *tokens);
+void    ft_free_cmd_list(t_cmd *cmd);
 
 /* Expansion */
 void    expansion(t_token *tokens);
 char    *expand_variable_w(char *value);
 char    *expand_variable_dq(char *value);
+
+/* Execution */
+int		exec_single(t_cmd *cmd);
+int		exec_command(t_cmd *cmd);
+
+/* -> Builtin */
+int		builtin_echo(t_cmd *cmd);
+int		builtin_cd(t_cmd *cmd);
+int		is_builtin(char *cmd);
+int		exec_builtin(t_cmd *cmd);
+
+/* -> Redirections */
+int		open_infile(const char *file);
+int		open_outfile(const char *file, bool append);
+int		dup2_close(int fd, int target);
+int		setup_redirs(t_cmd *cmd);
+
+/* -> Pipes */
+int		create_pipe(int pipefd[2]);
+void	close_pipe(int pipefd[2]);
+int		count_pipes(t_cmd *cmd);
+void	setup_pipe_in(int pipefd[2]);
+void	setup_pipe_out(int pipefd[2]);
+
+/* -> External*/
+char	*find_cmd_path(const char *cmd);
+int		exec_external(t_cmd *cmd);
+void	print_cmd_not_found(const char *cmd);
+
+/* -> Pipeline */
+void	exec_pipe_cmd(t_cmd *cmd, int in_fd, int pipefd[2]);
+int		exec_pipeline(t_cmd *cmd);
+
+/* -> Utils */
+void	ft_free_array(char **array);
+int		ft_strcmp(char *s1, char *s2);
+
+
+extern char	**environ;
+
 #endif

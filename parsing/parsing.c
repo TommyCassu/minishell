@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 00:26:24 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/21 02:20:11 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/26 02:10:21 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,7 @@ int verif_other_tokens(t_token *tokens)
                 printf("Minishell : syntax error2\n");
                 return (1);
             }
-            if (tmp->next->type != WORD
-                && tmp->next->type != SINGLEQUOTE && tmp->next->type != DOUBLEQUOTE)
+            if (tmp->next->type != WORD)
             {
                 
                 printf("Minishell : syntax error3\n");
