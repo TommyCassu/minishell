@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/26 02:12:28 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/26 23:46:29 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	add_r_red(t_cmd *cmd, t_token **tokens);
 void	add_app_red(t_cmd *cmd, t_token **tokens);
 t_cmd   *parse_cmd(t_token *tokens);
 void    ft_free_cmd_list(t_cmd *cmd);
+void	clear_quote(t_token *tokens);
 
 /* Expansion */
 void    expansion(t_token *tokens);

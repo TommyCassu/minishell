@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 22:16:18 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/26 02:11:51 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/26 23:48:03 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ t_token	*parse_line(char **str)
 	if (parsing(list))
 		return (NULL);
 	expansion(list);
+	clear_quote(list);
 	return (list);
 }

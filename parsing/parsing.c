@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 00:26:24 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/26 02:10:21 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/26 23:47:08 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ int verif_first_token(t_token *tokens)
     t_token *tmp;
     
     tmp = tokens;
-    if (tmp && (tmp->type == PIPE || tmp->type == L_REDIRECT || tmp->type == R_REDIRECT
-        || tmp->type == HEREDOC || tmp->type == APP_REDIRECT))
+    if (tmp && (tmp->type == PIPE))
     {
         ft_clean(tokens);
         return (1);
