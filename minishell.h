@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/27 21:58:16 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/27 23:09:56 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,7 @@ extern char	**environ;
 
 /* Heredoc test*/
 int verif_heredoc(t_token *tokens);
+int setup_heredoc(t_cmd *cmd);
+char *remove_quotes(char *input);
 
 #endif
