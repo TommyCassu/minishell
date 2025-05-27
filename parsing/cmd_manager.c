@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 23:45:22 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/26 02:10:33 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/27 21:57:38 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ t_cmd   *parse_cmd(t_token *tokens)
             add_r_red(cmd, &tmp);
         else if (tmp->type == APP_REDIRECT)
             add_app_red(cmd, &tmp);
+        else if (tmp->type == HEREDOC)
+            add_heredoc(cmd, &tmp);
         else if (tmp->type == PIPE)
         {
             cmd->next_pipe = 1;

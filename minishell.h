@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/26 23:46:29 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/27 21:58:16 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct cmd
     char    *l_redirect;
     char    *r_redirect;
     char    *app_redirect;
+    char    *heredoc_buff;
     int     previous_pipe;
     int     next_pipe;
 
@@ -99,6 +100,7 @@ void print_cmd(t_cmd *cmd);
 void	add_l_red(t_cmd *cmd, t_token **tokens);
 void	add_r_red(t_cmd *cmd, t_token **tokens);
 void	add_app_red(t_cmd *cmd, t_token **tokens);
+void	add_heredoc(t_cmd *cmd, t_token **tokens);
 t_cmd   *parse_cmd(t_token *tokens);
 void    ft_free_cmd_list(t_cmd *cmd);
 void	clear_quote(t_token *tokens);
@@ -146,5 +148,8 @@ int		ft_strcmp(char *s1, char *s2);
 
 
 extern char	**environ;
+
+/* Heredoc test*/
+int verif_heredoc(t_token *tokens);
 
 #endif
