@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 21:05:37 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/26 02:10:46 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/28 22:31:57 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char    *expand_variable_dq(char *value)
     i = 0;
     while (value[i])
     {
-        if (value[i] == '$' && check_in_quote(value, i) != 1)
+        if (value[i] == '$' && value[i + 1] != '\0' && check_in_quote(value, i) != 1)
         {
             i++;
             variable = extract_varname(value + i);

@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 00:26:24 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/27 23:26:51 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/28 22:05:46 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,25 +94,53 @@ int verif_first_token(t_token *tokens)
     }
     return (0);
 }
-
+int verif_directory(t_token *tokens)
+{
+    t_token *tmp;
+    
+    tmp = tokens;
+    while (tmp)
+    {
+        if (tmp && (tmp->type == PIPE || tmp->type == L_REDIRECT || tmp->type == R_REDIRECT
+        || tmp->type == HEREDOC || tmp->type == APP_REDIRECT))
+        {
+            if (!tmp->next)
+            {
+                printf("Minishell : syntax error2\n");
+                return (1);
+            }
+            if (tmp->next->type != WORD)
+            {
+                
+                printf("Minishell : syntax error3\n");
+                return (1);
+            }       
+        }
+        tmp = tmp->next;
+    }
+    return (0);
+}
 int parsing(t_token *tokens)
 {
+    if (!tokens)
+        return (1);
     if (verif_first_token(tokens))
     {
-        printf("code 1\n");
         return (1);
     }
     else if  (verif_other_tokens(tokens))
     {
-        printf("code 1\n");
         ft_clean(tokens);
         return (1);
     }
     else if  (verif_operator_utils(tokens))
     {
-        printf("code 1\n");
         ft_clean(tokens);
         return (1);
+    }
+    else if (verif_directory(tokens))
+    {
+        
     }
     verif_heredoc(tokens);
     if (tokens->type == HEREDOC)
@@ -134,7 +162,7 @@ int verif_input(char *str)
         return (1);
     else if (str[0] == ':' && !str[1])
         return (1);
-    else if (str[0] == '\0' && !str[1])
+    else if (str[0] == '\0')
         return (1);
     while (str[i] == ' ' || str[i] == '\t')
         i++;

@@ -6,15 +6,36 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 02:07:33 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/26 02:07:34 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/28 22:25:05 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+void print_error(const char *path, const char *msg)
+{
+    write(2, path, ft_strlen(path));
+    write(2, ": ", 2);
+    write(2, msg, ft_strlen(msg));
+    write(2, "\n", 1);
+}
+
 /* Replace current process with new program */
 static void	exec_cmd(t_cmd *cmd, char *path)
 {
+	struct stat st;
+	
+	if (stat(path, &st) == -1)
+    {
+        print_error(path, strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+
+    if (S_ISDIR(st.st_mode))
+    {
+        print_error(path, "Is a directory");
+        exit(EXIT_FAILURE);
+    }
 	execve(path, cmd->arguments, environ);
 	perror("execve");
 	exit(EXEC_ERROR);
