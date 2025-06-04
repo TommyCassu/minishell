@@ -67,8 +67,6 @@ void	ft_lstdelone_env(t_env_var *lst, void (*del)(void*))
 {
 	if (lst)
 	{
-		del(lst->name);
-        del(lst->value);
-		free(lst);
+		del(lst);
 	}
 }
