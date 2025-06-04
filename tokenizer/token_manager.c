@@ -84,7 +84,7 @@ t_token	*parse_line(t_shell *shell, char **str)
 	}
 	free(str);
 	add_type(list);
-	if (parsing(list))
+	if (parsing(shell, list))
 		return (NULL);
 	expansion(shell, list);
 	clear_quote(list);

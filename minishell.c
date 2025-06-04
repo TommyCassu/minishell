@@ -17,6 +17,7 @@ static int	init_shell(t_shell *sh, char **envp)
 	sh->env = env_init(envp);
 	if (!sh->env)
 		return (-1);
+	sh->global_status = 0;
 	//env refresh
 	return (0);
 }
@@ -52,7 +53,7 @@ int	main(int argc, char **argv, char **envp)
 		ft_putendl_fd("minishell: failed to initialize", STDERR_FILENO);
 		return (1);
 	}
-	while (1)
+	while (sh.global_status !=  -1)
 	{
 		input = readline("minishell$ ");
 		if (!input)
@@ -68,7 +69,7 @@ int	main(int argc, char **argv, char **envp)
 		if (tokens)
 		{
 			cmd = parse_cmd(tokens);
-			exec_command(&sh, cmd);
+			sh.global_status =  exec_command(&sh, cmd);
 			ft_free_cmd_list(cmd);
 		}
 	}

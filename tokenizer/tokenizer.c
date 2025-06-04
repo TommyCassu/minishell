@@ -62,7 +62,7 @@ t_token	*tokenize(t_shell *shell, char *str)
 	int		i;
 	i = 0;
 	compteur = 0;
-	if (!str || verif_input(str) || ft_count_quote(str))
+	if (!str || verif_input(shell, str) || ft_count_quote(str))
 		return (NULL);
 	str = ft_clean_comment(str);
 	result = (char **)malloc(sizeof(char *) * (_ft_countword(str) + 1));

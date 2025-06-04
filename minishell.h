@@ -75,6 +75,7 @@ typedef struct s_env_var
 typedef struct s_shell
 {
 	t_env_var	*env;
+	int			global_status;
 } t_shell;
 
 /* Spliting*/
@@ -94,16 +95,17 @@ void add_type(t_token *tokens);
 t_type get_type(t_token *tokens);
 
 int ft_count_quote(char *str);
-int verif_input(char *str);
+int verif_input(t_shell *shell, char *str);
 void ft_clean(t_token *tokens);
 
 t_token *parse_line(t_shell *shell, char **str);
 void print_tokens(t_token *tokens);
 /* Verif error */
-int parsing(t_token *tokens);
-int verif_first_token(t_token *tokens);
-int verif_other_tokens(t_token *tokens);
-int verif_operator_utils(t_token *token);
+int parsing(t_shell *shell, t_token *tokens);
+int verif_first_token(t_shell *shell, t_token *tokens);
+int verif_other_tokens(t_shell *shell, t_token *tokens);
+int verif_operator_utils(t_shell *shell, t_token *token);
+int syntax_error(t_shell *shell, const char *value);
 
 /* Parsing cmd manager */
 void init_cmd(t_cmd *cmd);
