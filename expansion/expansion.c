@@ -6,13 +6,13 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 21:05:37 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/28 22:31:57 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/04 16:40:08 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void    expansion(t_token *tokens)
+void    expansion(t_shell *shell, t_token *tokens)
 {
     t_token *tmp;
     
@@ -20,7 +20,7 @@ void    expansion(t_token *tokens)
     while(tmp)
     {
         if (tmp->type == WORD)
-            tmp->value = expand_variable_dq(tmp->value);
+            tmp->value = expand_variable_dq(shell, tmp->value);
         tmp = tmp->next;
     }
 }
@@ -72,7 +72,7 @@ char    *extract_varname(char *str)
     return(extract);
 }
 
-char    *expand_variable_dq(char *value)
+char    *expand_variable_dq(t_shell *shell, char *value)
 {
     int i;
     char    *variable;
@@ -85,7 +85,7 @@ char    *expand_variable_dq(char *value)
         {
             i++;
             variable = extract_varname(value + i);
-            var_env = getenv(variable);
+            var_env = env_get(shell->env, variable);
             value = expand_and_delete(value, variable, var_env);
             i = 0;
             continue ;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wifons <wifons@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/02 22:51:43 by wifons           ###   ########.fr       */
+/*   Updated: 2025/06/04 16:20:14 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct s_shell
 } t_shell;
 
 /* Spliting*/
-t_token *tokenize(char *str);
+t_token *tokenize(t_shell *shell, char *str);
 char *ft_clean_comment(char *str);
 /*      Spliting Utils */
 void _ft_free(char **result);
@@ -97,7 +97,7 @@ int ft_count_quote(char *str);
 int verif_input(char *str);
 void ft_clean(t_token *tokens);
 
-t_token *parse_line(char **str);
+t_token *parse_line(t_shell *shell, char **str);
 void print_tokens(t_token *tokens);
 /* Verif error */
 int parsing(t_token *tokens);
@@ -118,9 +118,8 @@ void ft_free_cmd_list(t_cmd *cmd);
 void clear_quote(t_token *tokens);
 
 /* Expansion */
-void expansion(t_token *tokens);
-char *expand_variable_w(char *value);
-char *expand_variable_dq(char *value);
+void expansion(t_shell *shell, t_token *tokens);
+char *expand_variable_dq(t_shell *shell, char *value);
 
 /* Execution */
 int exec_single(t_shell *shell, t_cmd *cmd);

@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 11:24:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/28 21:39:01 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/04 16:18:33 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	**ft_set_string(char *str, char **result, int *i, int *count)
 	return (result);
 }
 
-t_token	*tokenize(char *str)
+t_token	*tokenize(t_shell *shell, char *str)
 {
 	char	**result;
 	int		compteur;
@@ -76,5 +76,5 @@ t_token	*tokenize(char *str)
 	}
 	result[_ft_countword(str)] = 0;
 	free(str);
-	return (parse_line(result));
+	return (parse_line(shell, result));
 }
