@@ -3,56 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   exec_external.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wifons <wifons@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 02:07:33 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/28 22:25:05 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/01 20:36:33 by wifons           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void print_error(const char *path, const char *msg)
+static void exec_cmd(t_shell *sh, t_cmd *cmd, char *path)
 {
-    write(2, path, ft_strlen(path));
-    write(2, ": ", 2);
-    write(2, msg, ft_strlen(msg));
-    write(2, "\n", 1);
-}
+	char **exec_env;
 
-/* Replace current process with new program */
-static void	exec_cmd(t_cmd *cmd, char *path)
-{
-	struct stat st;
-	
-	if (stat(path, &st) == -1)
-    {
-        print_error(path, strerror(errno));
-        exit(EXIT_FAILURE);
-    }
-
-    if (S_ISDIR(st.st_mode))
-    {
-        print_error(path, "Is a directory");
-        exit(EXIT_FAILURE);
-    }
-	execve(path, cmd->arguments, environ);
+	printf("%s", sh->env->name);
+	exec_env = env_build_arr(sh->env);
+	if (!exec_env)
+	{
+		exec_env = malloc(sizeof(char *));
+		if (exec_env)
+			exec_env[0] = NULL;
+	}
+	execve(path, cmd->arguments, exec_env);
+	ft_free_array(exec_env);
 	perror("execve");
 	exit(EXEC_ERROR);
 }
 
-/* Child process: setup redirections and execute */
-static void	exec_child(t_cmd *cmd, char *path)
+static void exec_child(t_shell *shell, t_cmd *cmd, char *path)
 {
 	if (setup_redirs(cmd) == -1)
 		exit(GENERAL_ERROR);
-	exec_cmd(cmd, path);
+	exec_cmd(shell, cmd, path);
 }
 
-/* Wait for child process and get exit status */
-static int	wait_child(pid_t pid)
+static int wait_child(pid_t pid)
 {
-	int	status;
+	int status;
 
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
@@ -60,11 +47,10 @@ static int	wait_child(pid_t pid)
 	return (GENERAL_ERROR);
 }
 
-/* Execute external command by forking and calling execve */
-int	exec_external(t_cmd *cmd)
+int exec_external(t_shell *shell, t_cmd *cmd)
 {
-	pid_t	pid;
-	char	*path;
+	pid_t pid;
+	char *path;
 
 	path = find_cmd_path(cmd->arguments[0]);
 	if (!path)
@@ -80,7 +66,7 @@ int	exec_external(t_cmd *cmd)
 		return (GENERAL_ERROR);
 	}
 	if (pid == 0)
-		exec_child(cmd, path);
+		exec_child(shell, cmd, path);
 	free(path);
 	return (wait_child(pid));
 }
