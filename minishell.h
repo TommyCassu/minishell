@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/04 16:20:14 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/06 15:40:25 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include <string.h>	 // a retirer
 #include <stdbool.h> // a retirer
 
+#include <errno.h> // verifier si on a le droit 
 #include <fcntl.h>
 #include <sys/wait.h>
 
@@ -132,7 +133,7 @@ int builtin_echo(t_cmd *cmd);
 int builtin_export(t_shell *shell, char **args);
 int builtin_cd(t_shell *shell, t_cmd *cmd);
 int builtin_exit(t_shell *shell, char **args);
-int	builtin_pwd(void);
+int	builtin_pwd(t_shell *shell, char **arguments);
 int builtin_unset(t_shell *shell, char **args);
 int	builtin_env(t_shell *shell, char **args);
 

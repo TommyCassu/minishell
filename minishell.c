@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 09:24:32 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/04 16:18:06 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/06 15:28:28 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, char **argv, char **envp)
 		ft_putendl_fd("minishell: failed to initialize", STDERR_FILENO);
 		return (1);
 	}
-	while (sh.global_status !=  -1)
+	while (sh.global_status !=  -200)
 	{
 		input = readline("minishell$ ");
 		if (!input)

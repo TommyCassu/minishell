@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 11:24:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/04 16:18:33 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/06 14:58:06 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_token	*tokenize(t_shell *shell, char *str)
 	result = (char **)malloc(sizeof(char *) * (_ft_countword(str) + 1));
 	if (!result)
 		return (NULL);
+	
 	while (str[i] != '\0')
 	{
 		while (str[i] == ' ')

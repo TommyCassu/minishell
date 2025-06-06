@@ -9,7 +9,7 @@ void	print_declared_var(void *data)
 	var = (t_env_var *)data;
 	if (!var->name || ft_strcmp(var->name, "_") == 0)
 		return ;
-	ft_putstr_fd("export ", STDOUT_FILENO);
+	ft_putstr_fd("declare -x ", STDOUT_FILENO);
 	ft_putstr_fd(var->name, STDOUT_FILENO);
 	if (var->value)
 	{
