@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/06 15:40:25 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/07 22:35:39 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ void setup_pipe_in(int pipefd[2]);
 void setup_pipe_out(int pipefd[2]);
 
 /* -> External*/
-char *find_cmd_path(const char *cmd);
+char *find_cmd_path(t_env_var *env, const char *cmd);
 int exec_external(t_shell *shell, t_cmd *cmd);
 void print_cmd_not_found(const char *cmd);
 

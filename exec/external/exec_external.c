@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_external.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wifons <wifons@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 02:07:33 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/01 20:36:33 by wifons           ###   ########.fr       */
+/*   Updated: 2025/06/07 22:56:56 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void exec_cmd(t_shell *sh, t_cmd *cmd, char *path)
 	}
 	execve(path, cmd->arguments, exec_env);
 	ft_free_array(exec_env);
-	perror("execve");
+	//perror("minishell");
 	exit(EXEC_ERROR);
 }
 
@@ -52,7 +52,7 @@ int exec_external(t_shell *shell, t_cmd *cmd)
 	pid_t pid;
 	char *path;
 
-	path = find_cmd_path(cmd->arguments[0]);
+	path = find_cmd_path(shell->env, cmd->arguments[0]);
 	if (!path)
 	{
 		print_cmd_not_found(cmd->arguments[0]);
