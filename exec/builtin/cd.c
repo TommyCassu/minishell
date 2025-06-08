@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 02:07:10 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/06 15:45:29 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/08 23:21:40 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	builtin_cd(t_shell *sh, t_cmd *cmd)
 	{
 		path = get_home_path(sh->env);
 		if (!path)
-			return (-1);
+			return (1);
 	}
 	else if (cmd->arguments[2])
 	{

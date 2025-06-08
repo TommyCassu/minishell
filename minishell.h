@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/06 15:40:25 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/09 01:05:58 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ typedef struct s_shell
 	int			global_status;
 } t_shell;
 
+
+void    ft_free_token_list(t_token *tokens);
+void append_cmd(t_cmd **head, t_cmd *new_cmd);
 /* Spliting*/
 t_token *tokenize(t_shell *shell, char *str);
 char *ft_clean_comment(char *str);

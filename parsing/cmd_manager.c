@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 23:45:22 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/06 14:45:04 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/09 01:07:51 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void append_cmd(t_cmd **head, t_cmd *new_cmd)
 
     tmp->next = new_cmd;
 }
-
+/*
 t_cmd   *parse_cmd(t_token *tokens)
 {
     t_cmd   *head_cmd;
@@ -143,3 +143,4 @@ t_cmd   *parse_cmd(t_token *tokens)
     ft_free_token_list(tokens);
     return (head_cmd);
 }
+*/
