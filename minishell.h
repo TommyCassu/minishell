@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/09 01:19:29 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/09 23:14:14 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void _ft_free(char **result);
 int is_quote(char *str, int i);
 int check_in_quote(char *str, int i);
 int check_symbol(char *str, int i);
-int _ft_countword(char *str);
+int ft_countword_ms(char *str);
 char *_ft_strcpy(char *src, char *dest, int debut, int fin);
 char *extract_symbol_token(char *str, int *i);
 t_token *create_token(void *content);

@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 00:26:24 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/28 22:05:46 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/10 00:21:12 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int verif_operator_utils(t_shell *shell, t_token *token)
 
 	tmp = token;
 	while (tmp)
+	while (tmp)
 	{
 		if (tmp->type == L_REDIRECT || tmp->type == HEREDOC )
 			if (ft_strncmp(tmp->value, "<", 2) != 0 && ft_strncmp(tmp->value, "<<", 3) != 0)
@@ -65,7 +66,9 @@ int verif_other_tokens(t_shell *shell, t_token *tokens)
 		|| tmp->type == HEREDOC || tmp->type == APP_REDIRECT))
 		{
 			if (!tmp->next)
-				return (syntax_error(shell, tmp->value));
+				return (syntax_error(shell, "newline"));
+			if ((ft_strncmp(tmp->value, "<", 2) == 0  && tmp->next->type != L_REDIRECT))
+				return (syntax_error(shell, "newline"));
 			if (tmp->next->type != WORD)
 				return (syntax_error(shell, tmp->next->value));	   
 		}
@@ -85,34 +88,7 @@ int verif_first_token(t_shell *shell, t_token *tokens)
 	}
 	return (0);
 }
-/*
-int verif_directory(t_shell *shell, t_token *tokens)
-{
-	t_token *tmp;
-		
-	tmp = tokens;
-	while (tmp)
-	{
-		if (tmp && (tmp->type == PIPE || tmp->type == L_REDIRECT || tmp->type == R_REDIRECT
-		|| tmp->type == HEREDOC || tmp->type == APP_REDIRECT))
-		{
-			if (!tmp->next)
-			{
-				printf("minishell: syntax error near unexpected token `%s'\n", tmp->value);
-				shell->global_status = 2;
-				return (1);
-			}
-			if (tmp->next->type != WORD)
-			{
-				printf("minishell: syntax error near unexpected token `%s'\n", tmp->value);
-				shell->global_status = 2;
-				return (1);
-			}	   
-		}
-		tmp = tmp->next;
-	}
-	return (0);
-}*/
+
 int parsing(t_shell *shell, t_token *tokens)
 {
 	if (!tokens)
