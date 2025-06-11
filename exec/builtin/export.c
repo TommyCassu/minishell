@@ -59,7 +59,7 @@ static int	parse_export_arg(const char *arg, char **name, char **value)
 	{
 		free(*name);
 		*name = NULL;
-		return (-1);
+		return (1);
 	}
 	return (0);
 }
@@ -98,7 +98,7 @@ static int	export_single_var(t_env_var *env, char *arg)
 		ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
 		free(name);
 		free(value);
-		return (-1);
+		return (1);
 	}
 	res = env_set(env, name, value);
 	free(name);
@@ -120,7 +120,10 @@ int	builtin_export(t_shell *sh, char **args)
 	while (args[i])
 	{
 		if (export_single_var(sh->env, args[i]) != 0)
-			status = -1;
+		{
+			
+			status = 1;
+		}
 		i++;
 	}
 	return (status);
