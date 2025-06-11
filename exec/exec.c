@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 02:08:15 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/06 14:48:22 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/11 22:58:02 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	exec_command(t_shell *shell, t_cmd *cmd)
 	int	saved_stdout;
 	int	status;
 
-	if (!cmd || !cmd->arguments)
+	if (!cmd || (!cmd->arguments && cmd->app_redirect == NULL))
 		return (SUCCESS);
 	if (save_std_fds(&saved_stdin, &saved_stdout) == -1)
 		return (GENERAL_ERROR);
