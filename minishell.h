@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/11 22:32:22 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/12 13:25:13 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef enum
 	PIPE
 } t_type;
 
+
+
 typedef struct token
 {
 	char *value;
@@ -79,6 +81,14 @@ typedef struct s_shell
 	int			global_status;
 } t_shell;
 
+typedef struct s_parse_cmd
+{
+    t_cmd   **cmd;
+    t_cmd   **head_cmd;
+    t_token **tmp;
+    t_token *tokens;
+    t_shell *shell;
+} t_parse_cmd;
 
 void    ft_free_token_list(t_token *tokens);
 void append_cmd(t_cmd **head, t_cmd *new_cmd);
@@ -119,7 +129,8 @@ void add_l_red(t_cmd *cmd, t_token **tokens);
 void add_r_red(t_cmd *cmd, t_token **tokens);
 void add_app_red(t_cmd *cmd, t_token **tokens);
 void add_heredoc(t_cmd *cmd, t_token **tokens);
-t_cmd *parse_cmd(t_token *tokens);
+t_cmd *parse_cmd(t_token *tokens, t_shell *shell);
+int	init_parse_struct(t_parse_cmd *parse, t_token *tokens, t_shell *shell);
 void ft_free_cmd_list(t_cmd *cmd);
 void clear_quote(t_token *tokens);
 

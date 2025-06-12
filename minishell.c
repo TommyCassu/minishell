@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 09:24:32 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/11 22:44:26 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/12 13:49:26 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,9 @@ int	main(int argc, char **argv, char **envp)
 			tokens = tokenize(&sh, input);
 		if (tokens)
 		{
-			cmd = parse_cmd(tokens);
-			sh.global_status =  exec_command(&sh, cmd);
+			cmd = parse_cmd(tokens, &sh);
+			if (cmd)
+				sh.global_status =  exec_command(&sh, cmd);
 			ft_free_cmd_list(cmd);
 		}
 	}
