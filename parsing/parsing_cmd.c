@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 01:13:10 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/12 13:58:32 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/12 23:33:13 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	check_file_readable(const char *filename)
 {
 	if (access(filename, R_OK) == -1)
 	{
-		perror(filename);
-		return (0);
+		//perror(filename);
+		return (1);
 	}
 	return (1);
 }
@@ -34,8 +34,8 @@ int	check_file_writable(const char *filename)
 {
 	if (access(filename, W_OK) == -1)
 	{
-		perror(filename);
-		return (0);
+		//perror(filename);
+		return (1);
 	}
 	return (1);
 }

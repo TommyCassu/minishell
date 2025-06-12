@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 23:45:22 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/09 01:07:51 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/13 00:28:14 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void    ft_free_token_list(t_token *tokens)
 void    ft_operator_free(t_cmd *cmd)
 {
     if (cmd->app_redirect)
-            free(cmd->app_redirect);
+        free(cmd->app_redirect);
     if (cmd->l_redirect)
         free(cmd->l_redirect);
     if (cmd->r_redirect)

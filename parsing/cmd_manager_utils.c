@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 01:24:42 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/09 00:34:32 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/13 00:54:06 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,12 @@ void	add_l_red(t_cmd *cmd, t_token **tokens)
 	*tokens = (*tokens)->next;
 	file = ft_strdup((*tokens)->value);
 	if (!file)
-		return ;	
+		return ;
+	if (cmd->l_redirect)
+	{
+		open_outfile(cmd->l_redirect, false);
+		free(cmd->l_redirect);
+	}	
 	cmd->l_redirect = file;
 }
 
@@ -56,13 +61,23 @@ void	add_r_red(t_cmd *cmd, t_token **tokens)
 	*tokens = (*tokens)->next;
 	file = ft_strdup((*tokens)->value);
 	if (!file)
-		return ;	
+		return ;
+	if (cmd->r_redirect)
+	{
+		open_outfile(cmd->r_redirect, false);
+		free(cmd->r_redirect);
+	}	
 	cmd->r_redirect = file;
 }
 
 void	add_app_red(t_cmd *cmd, t_token **tokens)
 {
 	*tokens = (*tokens)->next;
+	if (cmd->app_redirect)
+	{
+		open_outfile(cmd->app_redirect, false);
+		free(cmd->app_redirect);
+	}
 	cmd->app_redirect = ft_strdup((*tokens)->value);
 }
 

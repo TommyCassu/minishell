@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 21:05:37 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/11 01:44:08 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/12 23:09:22 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,22 @@ char    *fix_value(char *str)
     int i;
     int j;
     
-    i = 1;
+    i = 0;
     j = 0;
     new_value = NULL;
     if (str[i] != '\0')
     {
         new_value = malloc((sizeof(char)) * ft_strlen(str + i) + 1);
         while (str[i] != '\0')
+        {
+            if (str[i] == '$')
+            {
+                i++;
+                continue ;
+            }
             new_value[j++] = str[i++];
+        }
+            
         new_value[j] = '\0';
         free(str);
     }
