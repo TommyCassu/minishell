@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 23:45:22 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/13 00:28:14 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/15 01:29:45 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void    ft_free_token_list(t_token *tokens)
 }
 void    ft_operator_free(t_cmd *cmd)
 {
+    t_redir_ordered *tmp;
+
     if (cmd->app_redirect)
         free(cmd->app_redirect);
     if (cmd->l_redirect)
@@ -36,6 +38,15 @@ void    ft_operator_free(t_cmd *cmd)
         free(cmd->r_redirect);
     if (cmd->heredoc_buff)
         free(cmd->heredoc_buff);
+    while (cmd->redir_list)
+    {
+        tmp = cmd->redir_list;
+        cmd->redir_list = cmd->redir_list->next;
+        free(tmp->filename);
+        free(tmp);
+    }
+      
+    
 }
 
 void    ft_free_cmd_list(t_cmd *cmd)
@@ -75,6 +86,7 @@ void    init_cmd(t_cmd *cmd)
     cmd->r_redirect = NULL;
     cmd->app_redirect = NULL;
     cmd->heredoc_buff = NULL;
+    cmd->redir_list = NULL;
     cmd->previous_pipe = 0;
     cmd->next_pipe = 0;
     cmd->next = NULL;

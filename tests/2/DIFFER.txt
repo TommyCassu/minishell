@@ -1,0 +1,144 @@
+<<<<<<<<<<<<<<<<
+
+.
+
+..
+
+~
+
+ABC=hola
+
+echo "$"""
+
+echo '$'''
+
+echo "$"HOME
+
+"$HOMEdskjhfkdshfsd"
+
+export
+
+export Hola
+export
+
+export Hola9hey
+export
+
+export $DONTEXIST
+
+export | grep "HOME"
+
+export -HOLA=bonjour
+
+export --HOLA=bonjour
+
+export HO!LA=bonjour
+
+export HOLA='""'
+echo "" $HOLA "" | cat -e
+
+export """" HOLA=bonjour
+env
+
+export HOL=A=bonjour
+env
+
+export HOL=A=""""
+env
+
+export TE+S=T
+env
+
+export A=1 B=2 C=3 D=4 E=5 F=6 G=7 H=8
+echo ""$A'$B""'$C""$D'$E'""$F'""'$G'$H""
+
+export HOLA=bonjour
+env
+unset HOLA
+env
+
+export HOLA=bonjour
+env
+unset HOLA
+unset HOLA
+env
+
+unset PATH
+ls
+
+pwd
+unset PWD
+env | grep PWD
+cd $PWD
+pwd
+
+unset OLDPWD
+env | grep OLDPWD
+
+unset -HOLA
+
+unset PATH
+cat Makefile
+
+/bin/env
+
+history
+
+pwd -p
+
+pwd --p
+
+pwd ---p
+
+cd //
+pwd
+
+pwd"
+
+cd -
+
+cd --
+
+cd ---
+
+unset HOME
+cd $HOME
+
+unset HOME
+export HOME=
+cd
+
+unset HOME
+export HOME
+cd
+
+cd ~
+
+cd ~/
+
+cd ~/ | echo $?
+pwd
+
+mkdir a
+mkdir a/b
+cd a/b
+rm -r ../../a
+cd ..
+
+mkdir a
+mkdir a/b
+cd a/b
+rm -r ../../a
+pwd
+
+echo hola > a
+>>b echo que tal
+cat a | <b cat | cat > c | cat
+
+echo que tal >> bonjour
+cat bonjour
+
+mkdir dir
+ls -la > dir/bonjour
+cat dir/bonjour"
+

@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 00:26:24 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/11 22:53:38 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/14 13:58:10 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int parsing(t_shell *shell, t_token *tokens)
 		ft_clean(tokens);
 		return (1);
 	}
-	verif_heredoc(tokens);
+	verif_heredoc(shell, tokens);
 	if (tokens->type == HEREDOC)
 	{
 		ft_clean(tokens);

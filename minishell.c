@@ -6,19 +6,32 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 09:24:32 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/12 13:49:26 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/14 13:44:13 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	init_shell(t_shell *sh, char **envp)
+static int init_shell(t_shell *sh, char **envp)
 {
+	char *shlvl_str;
+	char *new_shlvl_str;
+	int shlvl;
+
 	sh->env = env_init(envp);
 	if (!sh->env)
 		return (-1);
 	sh->global_status = 0;
-	//env refresh
+	shlvl_str = env_get(sh->env, "SHLVL");
+	if (shlvl_str)
+		shlvl = ft_atoi(shlvl_str) + 1;
+	else
+		shlvl = 1;
+	new_shlvl_str = ft_itoa(shlvl);
+	if (!new_shlvl_str)
+		return (-1);
+	env_set(sh->env, "SHLVL", new_shlvl_str);
+	free(new_shlvl_str);
 	return (0);
 }
 
@@ -41,11 +54,11 @@ void	cleanup_shell(t_env_var *env)
 
 int	main(int argc, char **argv, char **envp)
 {
-	char	*input;
-	t_token	*tokens;
-	t_cmd	*cmd;
-	t_shell	sh;
-	
+	char *input;
+	t_token *tokens;
+	t_cmd *cmd;
+	t_shell sh;
+
 	(void)argc;
 	(void)argv;
 	if (init_shell(&sh, envp) != 0)
@@ -53,6 +66,8 @@ int	main(int argc, char **argv, char **envp)
 		ft_putendl_fd("minishell: failed to initialize", STDERR_FILENO);
 		return (1);
 	}
+	setup_signals_interactive();
+	sh.curr_line = 1;
 	while (sh.global_status !=  -200)
 	{
 		input = readline("minishell$ ");
@@ -69,10 +84,13 @@ int	main(int argc, char **argv, char **envp)
 		if (tokens)
 		{
 			cmd = parse_cmd(tokens, &sh);
+			setup_signals_execution();
 			if (cmd)
 				sh.global_status =  exec_command(&sh, cmd);
+			setup_signals_interactive();
 			ft_free_cmd_list(cmd);
 		}
+		sh.curr_line++;
 	}
 	cleanup_shell(sh.env);
 	return (0);

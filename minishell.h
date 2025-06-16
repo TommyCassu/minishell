@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/12 13:25:13 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/15 01:36:51 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,19 @@ typedef enum
 } t_type;
 
 
-
 typedef struct token
 {
 	char *value;
 	t_type type;
 	struct token *next;
 } t_token;
+
+typedef struct s_redir_ordered {
+    int redirect; // 1 pour in, 0 pour out
+    int append;   // 1 pour >>, 0 pour >
+    char *filename;
+    struct s_redir_ordered *next;
+} t_redir_ordered;
 
 typedef struct cmd
 {
@@ -62,6 +68,7 @@ typedef struct cmd
 	char *r_redirect;
 	char *app_redirect;
 	char *heredoc_buff;
+	t_redir_ordered *redir_list;
 	int previous_pipe;
 	int next_pipe;
 
@@ -79,6 +86,7 @@ typedef struct s_shell
 {
 	t_env_var	*env;
 	int			global_status;
+	int			curr_line;
 } t_shell;
 
 typedef struct s_parse_cmd
@@ -209,8 +217,19 @@ t_env_var	*ft_lstnew_env(const char *name, const char *value);
 void	ft_lstdelone_env(t_env_var *lst, void (*del)(void*));
 
 /* Heredoc test*/
-int verif_heredoc(t_token *tokens);
+int verif_heredoc(t_shell *sh, t_token *tokens);
 int setup_heredoc(t_cmd *cmd);
 char *remove_quotes(char *input);
+
+/* signals */
+extern volatile sig_atomic_t g_signal_received;
+
+void setup_signals_interactive(void);
+void setup_signals_execution(void);
+void setup_signals_child(void);
+void setup_heredoc_signals(void);
+void reset_signals(void);
+
+void	print_file_error(const char *file);
 
 #endif

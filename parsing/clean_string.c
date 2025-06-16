@@ -6,36 +6,45 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 22:14:49 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/27 23:42:18 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/16 18:43:54 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+int	is_separator(char c)
+{
+	if (c == ' ' || c == '\t' || c == '\0')
+		return (1);
+	return (0);
+}
 /* Remplace le # et tout ce qu'il y a deriere dans la ligne de commande recus */
 char	*ft_clean_comment(char *str)
 {
 	int		i;
+	int		commentaire_position;
 	char	*result;
 
 	i = 0;
+	commentaire_position = -1;
 	while (str[i])
 	{
-		if (str[i] == '\0')
-			return (str);
 		if (str[i] == '#' && check_in_quote(str, i) == 0)
-			break ;
+		{
+			if (i == 0 || is_separator(i - 1))
+			{
+				commentaire_position = i;
+				break ;
+			}
+		}
 		i++;
 	}
-	result = malloc(sizeof(char) * i + 1);
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '#' && check_in_quote(str, i) == 0)
-			break ;
+	if (commentaire_position == -1)
+		commentaire_position = i;
+	result = malloc(sizeof(char) * (commentaire_position + 1));
+	i = -1;
+	while (++i < commentaire_position)
 		result[i] = str[i];
-		i++;
-	}
 	result[i] = '\0';
 	free(str);
 	return (result);
