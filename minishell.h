@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/15 01:36:51 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/17 01:13:23 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,11 @@ void clear_quote(t_token *tokens);
 
 /* Expansion */
 void expansion(t_shell *shell, t_token *tokens);
-char *expand_variable_dq(t_shell *shell, char *value);
+void    expand_brace(t_shell *shell, const char *value, char **exp, int *skip);
+void    expand_simple(t_shell *shell, const char *value, char **exp, int *skip);
+char    *replace_cmd_code(char *value, char *code);
+char    *ft_strjoin_free(char *s1, const char *s2);
+
 
 /* Execution */
 int exec_single(t_shell *shell, t_cmd *cmd);
