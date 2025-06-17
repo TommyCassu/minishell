@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_pipe_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wifons <wifons@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 02:07:46 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/29 16:44:01 by wifons           ###   ########.fr       */
+/*   Updated: 2025/06/18 00:00:30 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ static void	setup_pipe_output(t_cmd *cmd, int pipefd[2])
 /* Execute command based on type (builtin or external) */
 static void	exec_cmd_type(t_shell *shell, t_cmd *cmd)
 {
+	if (!cmd->arguments)
+	{
+		if (setup_redirs(cmd) == -1)
+			return ;
+		return ;
+	}
 	if (is_builtin(cmd->arguments[0]))
 		exit(exec_builtin(shell, cmd));
 	else

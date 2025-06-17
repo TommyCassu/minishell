@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 19:57:51 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/17 19:10:37 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/17 23:44:08 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ char	*ft_heredoc(t_shell *sh, char *eof_hd)
 			break ;
 		}
 		tmp = new_value;
+		gnlreturn = expand_var(sh, gnlreturn);
+		gnlreturn = expand_cmd_code(sh, gnlreturn);
 		new_value = ft_strjoin(new_value, gnlreturn);
 		free(gnlreturn);
 		if (new_value)

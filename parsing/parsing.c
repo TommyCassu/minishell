@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 00:26:24 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/17 19:14:21 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/17 23:54:53 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	verif_other_tokens(t_shell *shell, t_token *tokens)
 					&& (tmp->next->type != L_REDIRECT
 						&& tmp->next->type != WORD)))
 				return (syntax_error(shell, "newline"));
-			if (tmp->next->type != WORD)
+			if (tmp->next->type != WORD && tmp->next->next->type != WORD)
 				return (syntax_error(shell, tmp->next->value));
 		}
 		tmp = tmp->next;

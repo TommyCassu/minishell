@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/17 18:42:48 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/17 23:44:51 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,8 @@ void clear_quote(t_token *tokens);
 void expansion(t_shell *shell, t_token *tokens);
 void    expand_brace(t_shell *shell, const char *value, char **exp, int *skip);
 void    expand_simple(t_shell *shell, const char *value, char **exp, int *skip);
+char    *expand_var(t_shell *shell, char *value);
+char    *expand_cmd_code(t_shell *shell, char *value);
 char    *replace_cmd_code(char *value, char *code);
 char    *ft_strjoin_free(char *s1, const char *s2);
 char	*translation(char	*value);
