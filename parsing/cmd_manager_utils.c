@@ -6,32 +6,33 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 01:24:42 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/15 01:34:16 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/17 19:07:13 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void add_redir_ordered(t_cmd *cmd, int redirect, int append, const char *filename)
+void	add_redir_ordered(t_cmd *cmd, int redirect, int append, const char *filename)
 {
-    t_redir_ordered *new = malloc(sizeof(t_redir_ordered));
-    t_redir_ordered *tmp;
+	t_redir_ordered	*new;
+	t_redir_ordered	*tmp;
 
-    if (!new)
-        return;
-    new->redirect = redirect;
-    new->append = append;
-    new->filename = ft_strdup(filename);
-    new->next = NULL;
-
-    if (!cmd->redir_list)
-        cmd->redir_list = new;
-    else {
-        tmp = cmd->redir_list;
-        while (tmp->next)
-            tmp = tmp->next;
-        tmp->next = new;
-    }
+	new = malloc(sizeof(t_redir_ordered));
+	if (!new)
+		return ;
+	new->redirect = redirect;
+	new->append = append;
+	new->filename = ft_strdup(filename);
+	new->next = NULL;
+	if (!cmd->redir_list)
+		cmd->redir_list = new;
+	else
+	{
+		tmp = cmd->redir_list;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
 }
 
 void	add_arg(t_cmd *cmd, char *value)
@@ -39,7 +40,7 @@ void	add_arg(t_cmd *cmd, char *value)
 	int		i;
 	int		j;
 	char	**args;
-		
+
 	i = 0;
 	if (cmd->arguments)
 		while (cmd->arguments[i])
@@ -54,7 +55,6 @@ void	add_arg(t_cmd *cmd, char *value)
 		j++;
 	}
 	args[j] = ft_strdup(value);
-	// error check a faire
 	args[j + 1] = NULL;
 	free(cmd->arguments);
 	cmd->arguments = args;
@@ -63,7 +63,7 @@ void	add_arg(t_cmd *cmd, char *value)
 void	add_l_red(t_cmd *cmd, t_token **tokens)
 {
 	char	*file;
-	
+
 	*tokens = (*tokens)->next;
 	file = ft_strdup((*tokens)->value);
 	if (!file)
@@ -77,7 +77,7 @@ void	add_l_red(t_cmd *cmd, t_token **tokens)
 void	add_r_red(t_cmd *cmd, t_token **tokens)
 {
 	char	*file;
-	
+
 	*tokens = (*tokens)->next;
 	file = ft_strdup((*tokens)->value);
 	if (!file)

@@ -6,15 +6,15 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 19:57:51 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/14 13:50:18 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/17 19:10:37 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int ft_cmp_heredoc(char *eof, char *returngnl)
+int	ft_cmp_heredoc(char *eof, char *returngnl)
 {
-	size_t len;
+	size_t	len;
 
 	if (!returngnl)
 		return (0);
@@ -28,7 +28,7 @@ int ft_cmp_heredoc(char *eof, char *returngnl)
 	return (0);
 }
 
-static void print_heredoc_eof_warning(int line, char *eof_hd)
+static void	print_heredoc_eof_warning(int line, char *eof_hd)
 {
 	write(1, "\n", 1);
 	ft_putstr_fd("minishell: warning: here-document at line ", STDERR_FILENO);
@@ -38,7 +38,7 @@ static void print_heredoc_eof_warning(int line, char *eof_hd)
 	ft_putendl_fd("')", STDERR_FILENO);
 }
 
-static void heredoc_cleanup(int stdin_backup, char *new_value, char *gnlreturn, char *eof_hd)
+static void	heredoc_cleanup(int stdin_backup, char *new_value, char *gnlreturn, char *eof_hd)
 {
 	dup2(stdin_backup, STDIN_FILENO);
 	close(stdin_backup);
@@ -48,13 +48,13 @@ static void heredoc_cleanup(int stdin_backup, char *new_value, char *gnlreturn, 
 	setup_signals_interactive();
 }
 
-char *ft_heredoc(t_shell *sh, char *eof_hd)
+char	*ft_heredoc(t_shell *sh, char *eof_hd)
 {
-	char *new_value = ft_strdup("");
-	char *gnlreturn = NULL;
-	char *tmp;
-	int stdin_backup = dup(STDIN_FILENO);
-	int heredoc_start_line = sh->curr_line;
+	char	*new_value = ft_strdup("");
+	char	*gnlreturn = NULL;
+	char	*tmp;
+	int		stdin_backup = dup(STDIN_FILENO);
+	int		heredoc_start_line = sh->curr_line;
 
 	setup_heredoc_signals();
 	while (1)
@@ -69,12 +69,12 @@ char *ft_heredoc(t_shell *sh, char *eof_hd)
 		if (!gnlreturn)
 		{
 			print_heredoc_eof_warning(heredoc_start_line, eof_hd);
-			break;
+			break ;
 		}
 		if (ft_cmp_heredoc(eof_hd, gnlreturn))
 		{
 			free(gnlreturn);
-			break;
+			break ;
 		}
 		tmp = new_value;
 		new_value = ft_strjoin(new_value, gnlreturn);
@@ -87,7 +87,7 @@ char *ft_heredoc(t_shell *sh, char *eof_hd)
 	return (new_value);
 }
 
-int verif_heredoc(t_shell *sh, t_token *tokens)
+int	verif_heredoc(t_shell *sh, t_token *tokens)
 {
 	t_token *tmp;
 

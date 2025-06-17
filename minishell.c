@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 09:24:32 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/14 13:44:13 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/17 18:39:45 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	cleanup_shell(t_env_var *env)
 	{
 		while (env)
 		{
-			tmp = env;
-			env = env->next;
-			free(tmp->name);
-			free(tmp->value);
-			free(tmp);
+			tmp = env->next;
+			free(env->name);
+			free(env->value);
+			free(env);
+			env = tmp;
 		}
 	}
 }
@@ -93,5 +93,6 @@ int	main(int argc, char **argv, char **envp)
 		sh.curr_line++;
 	}
 	cleanup_shell(sh.env);
+	rl_clear_history();
 	return (0);
 }
