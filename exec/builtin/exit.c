@@ -6,14 +6,14 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 03:45:49 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 18:18:11 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 21:37:11 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
 /* Check if string is numeric */
-static int	legal_number(char *string, long *result)
+int	legal_number(char *string, long *result)
 {
 	char	*end;
 	long	val;
@@ -42,21 +42,6 @@ static void	no_args(char **args, int index)
 {
 	if (args[index])
 		ft_putendl_fd("minishell: exit: too many arguments", STDERR_FILENO);
-}
-
-static int	is_option(char *arg)
-{
-	long	dummy;
-
-	if (!arg || arg[0] != '-')
-		return (0);
-	if (arg[1] == '\0')
-		return (0);
-	if (arg[1] == '-' && arg[2] == '\0')
-		return (1);
-	if (legal_number(arg, &dummy))
-		return (0);
-	return (1);
 }
 
 static int	get_exitstat(char **args, t_shell *sh, int *too_many_args)

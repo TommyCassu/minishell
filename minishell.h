@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 18:35:02 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 21:49:28 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <readline/history.h>
 # include <string.h>
 # include <stdbool.h>
-
+# include <sys/stat.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <sys/wait.h>
@@ -166,16 +166,20 @@ char		*ft_strjoin_free(char *s1, const char *s2);
 /* Execution */
 int			exec_single(t_shell *shell, t_cmd *cmd);
 int			exec_command(t_shell *shell, t_cmd *cmd);
+int			check_all_redirs(t_redir_ordered *redir);
 
 /* -> Builtin */
 int			builtin_echo(t_cmd *cmd);
 int			builtin_export(t_shell *shell, char **args);
+void		print_declared_var(void *data);
+int			print_all_vars(t_env_var *env);
 int			builtin_cd(t_shell *shell, t_cmd *cmd);
 int			builtin_exit(t_shell *shell, t_cmd *cmd);
+int			is_option(char *arg);
+int			legal_number(char *string, long *result);
 int			builtin_pwd(t_shell *shell, char **arguments);
 int			builtin_unset(t_shell *shell, char **args);
 int			builtin_env(t_shell *shell, char **args);
-
 int			is_builtin(char *cmd);
 int			exec_builtin(t_shell *shell, t_cmd *cmd);
 
@@ -196,6 +200,11 @@ void		setup_pipe_out(int pipefd[2]);
 char		*find_cmd_path(t_env_var *env, const char *cmd);
 int			exec_external(t_shell *shell, t_cmd *cmd);
 int			print_cmd_not_found(const char *cmd);
+int			is_directory(const char *path);
+int			print_dir_error(char *cmd);
+void		exec_cmd(t_shell *sh, t_cmd *cmd, char *path);
+void		exec_child(t_shell *shell, t_cmd *cmd, char *path);
+int			wait_child(pid_t pid);
 
 /* -> Pipeline */
 void		exec_pipe_cmd(t_shell *shell, t_cmd *cmd, int in_fd, int pipefd[2]);
@@ -204,7 +213,6 @@ int			exec_pipeline(t_shell *shell, t_cmd *cmd);
 /* ENV */
 
 t_env_var	*env_init(char **envp);
-
 int			env_set(t_env_var *env, const char *name, const char *val);
 int			env_unset(t_env_var *env, const char *name);
 int			env_var_cmp_name(void *var_ptr, void *name_ref);
@@ -227,8 +235,6 @@ t_env_var	*ft_lstdup(t_env_var *lst);
 int			ft_lstiter_ctx(t_env_var *lst, int (*f)(void *, void *), void *ctx);
 int			ft_lstcount_if(t_env_var *lst, int (*f)(void *));
 int			ft_strcmp(char *s1, char *s2);
-
-/* env test moi*/
 void		ft_lstiter_env(t_env_var *lst, void (*f)(void *));
 void		ft_lstclear_env(t_env_var *lst);
 void		ft_lstadd_back_env(t_env_var **env, t_env_var *new);

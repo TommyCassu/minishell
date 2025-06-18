@@ -6,53 +6,17 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 03:46:08 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 03:46:39 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 21:34:23 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	print_declared_var(void *data)
-{
-	t_env_var	*var;
-
-	if (!data)
-		return ;
-	var = (t_env_var *)data;
-	if (!var->name || ft_strcmp(var->name, "_") == 0)
-		return ;
-	ft_putstr_fd("declare -x ", STDOUT_FILENO);
-	ft_putstr_fd(var->name, STDOUT_FILENO);
-	if (var->value && var->value[0] != '\0')
-	{
-		ft_putstr_fd("=\"", STDOUT_FILENO);
-		ft_putstr_fd(var->value, STDOUT_FILENO);
-		ft_putstr_fd("\"", STDOUT_FILENO);
-	}
-	ft_putchar_fd('\n', STDOUT_FILENO);
-}
-
-static int	print_all_vars(t_env_var *env)
-{
-	t_env_var	*sorted;
-
-	if (!env)
-		return (-1);
-	sorted = ft_lstsort_dup(env, env_var_cmp_var);
-	if (!sorted)
-		return (-1);
-	ft_lstiter_env(sorted, print_declared_var);
-	ft_lstclear_env(sorted);
-	return (0);
-}
-
-static int	parse_export_arg(const char *arg, char **name, char **value)
+int	extract_name_value(const char *arg, char **name, char **value)
 {
 	char		*eq;
 	size_t		len;
 
-	if (!arg || !name || !value)
-		return (-1);
 	eq = ft_strchr(arg, '=');
 	if (!eq)
 	{
@@ -74,6 +38,13 @@ static int	parse_export_arg(const char *arg, char **name, char **value)
 		return (1);
 	}
 	return (0);
+}
+
+static int	parse_export_arg(const char *arg, char **name, char **value)
+{
+	if (!arg || !name || !value)
+		return (-1);
+	return (extract_name_value(arg, name, value));
 }
 
 static int	env_is_valid_name(const char *name)
@@ -107,7 +78,10 @@ static int	export_single_var(t_env_var *env, char *arg)
 	{
 		ft_putstr_fd("export: `", STDERR_FILENO);
 		ft_putstr_fd(arg, STDERR_FILENO);
-		ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
+		if (arg[0] == '-' && arg[1] != ' ')
+			ft_putendl_fd("': invalid option", STDERR_FILENO);
+		else
+			ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
 		free(name);
 		free(value);
 		return (1);

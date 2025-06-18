@@ -6,13 +6,13 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 09:24:32 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 18:33:25 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 22:09:57 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int init_shell(t_shell *sh, char **envp)
+static int	init_shell(t_shell *sh, char **envp)
 {
 	char	*shlvl_str;
 	char	*new_shlvl_str;
@@ -38,7 +38,7 @@ static int init_shell(t_shell *sh, char **envp)
 
 void	cleanup_shell(t_env_var *env)
 {
-	t_env_var *tmp;
+	t_env_var	*tmp;
 
 	if (env)
 	{
@@ -53,11 +53,35 @@ void	cleanup_shell(t_env_var *env)
 	}
 }
 
-int	main(int argc, char **argv, char **envp)
+void	shell_process(t_shell *shell)
 {
 	char	*input;
 	t_token	*tokens;
 	t_cmd	*cmd;
+
+	while (!shell->should_exit)
+	{
+		input = readline("minishell$ ");
+		if (!input)
+			break ;
+		add_history(input);
+		if (input)
+			tokens = tokenize(shell, input);
+		if (tokens)
+		{
+			cmd = parse_cmd(tokens, shell);
+			setup_signals_execution();
+			if (cmd)
+				shell->global_status = exec_command(shell, cmd);
+			setup_signals_interactive();
+			ft_free_cmd_list(cmd);
+		}
+		shell->curr_line++;
+	}
+}
+
+int	main(int argc, char **argv, char **envp)
+{
 	t_shell	sh;
 
 	(void)argc;
@@ -69,30 +93,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	setup_signals_interactive();
 	sh.curr_line = 1;
-	while (!sh.should_exit)
-	{
-		input = readline("minishell$ ");
-		if (!input)
-			break ;
-		if (strcmp(input, "exit") == 0)
-		{
-			free(input);
-			break ;
-		}
-		add_history(input);
-		if (input)
-			tokens = tokenize(&sh, input);
-		if (tokens)
-		{
-			cmd = parse_cmd(tokens, &sh);
-			setup_signals_execution();
-			if (cmd)
-				sh.global_status = exec_command(&sh, cmd);
-			setup_signals_interactive();
-			ft_free_cmd_list(cmd);
-		}
-		sh.curr_line++;
-	}
+	shell_process(&sh);
 	cleanup_shell(sh.env);
 	rl_clear_history();
 	return (sh.global_status);

@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 01:24:42 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 18:29:31 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 20:39:12 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,3 @@ void	add_app_red(t_cmd *cmd, t_token **tokens)
 		free(cmd->app_redirect);
 	cmd->app_redirect = ft_strdup((*tokens)->value);
 }
-
-

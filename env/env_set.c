@@ -6,11 +6,21 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 03:42:47 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 03:42:48 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 22:02:05 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	dup_value(t_env_var	*var, const char	*value)
+{
+	var->value = ft_strdup(value);
+	if (var->value)
+		return (1);
+	else
+		var->value = ft_strdup("\0");
+	return (0);
+}
 
 static	t_env_var	*create_env_var(const char *name, const char *value)
 {
@@ -27,18 +37,12 @@ static	t_env_var	*create_env_var(const char *name, const char *value)
 		free(var);
 		return (NULL);
 	}
-	if (value)
+	if (!dup_value(var, value))
 	{
-		var->value = ft_strdup(value);
-		if (!var->value)
-		{
-			free(var->name);
-			free(var);
-			return (NULL);
-		}
+		free(var->name);
+		free(var);
+		return (NULL);
 	}
-	else
-		var->value = ft_strdup("\0");
 	return (var);
 }
 
