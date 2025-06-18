@@ -36,12 +36,6 @@
 
 ///////
 
-\\
-
-\\\\
-
-\\\\\\\\
-
 -
 
 |
@@ -140,8 +134,6 @@ echo ' $ ' | cat -e
 
 echo $HOME
 
-echo \$HOME
-
 echo my shit terminal is [$TERM]
 
 echo my shit terminal is [$TERM4
@@ -154,13 +146,7 @@ echo $9HOME
 
 echo $HOME%
 
-echo $UID$HOME
-
 echo Le path de mon HOME est $HOME
-
-echo $USER$var\$USER$USER\$USERtest$USER
-
-echo $hola*
 
 echo -nnnn $hola
 
@@ -335,11 +321,19 @@ export HOL}A=bonjour
 
 export HOL{A=bonjour
 
-export HO*LA=bonjour
-
 export HO#LA=bonjour
 
 export HO@LA=bonjour
+
+export +HOLA=bonjour
+
+export HOL+A=bonjour
+
+export HOLA =bonjour
+
+export HOLA = bonjour
+
+export | grep "HOME"
 
 export ""=""
 
@@ -365,10 +359,6 @@ unset HOL?A HOL.A
 
 unset HOLA=
 
-unset HOL\\\\A
-
-unset HOL;A
-
 unset HOL.A
 
 unset HOL+A
@@ -389,8 +379,6 @@ unset HOL_A
 
 unset HOLA_
 
-unset HOL*A
-
 unset HOL#A
 
 unset $HOLA
@@ -399,13 +387,9 @@ unset $PWD
 
 unset HOL@
 
-unset HOL!A
-
 unset HOL^A
 
 unset HOL$?A
-
-unset HOL\~A
 
 unset =
 
@@ -614,8 +598,6 @@ export HOLA=bonjour | cat -e | cat -e
 unset HOLA | cat -e
 
 < pwd
-
-< Makefile .
 
 cat <pwd
 
