@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/18 03:45:49 by tcassu            #+#    #+#             */
+/*   Updated: 2025/06/18 03:46:03 by tcassu           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../minishell.h"
 
 /* Check if string is numeric */
-static int is_numeric(char *str)
+static int	is_numeric(char *str)
 {
-	int i;
+	int	i;
 
 	if (!str)
 		return (0);
@@ -22,9 +34,9 @@ static int is_numeric(char *str)
 }
 
 /* Exit shell with status code */
-int builtin_exit(t_shell *shell, char **args)
+int	builtin_exit(t_shell *shell, char **args)
 {
-	int code;
+	int	code;
 
 	ft_putendl_fd("exit", STDERR_FILENO);
 	if (!args[1])

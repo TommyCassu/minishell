@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/18 03:46:08 by tcassu            #+#    #+#             */
+/*   Updated: 2025/06/18 03:46:39 by tcassu           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../minishell.h"
 
 void	print_declared_var(void *data)
@@ -37,7 +49,7 @@ static int	print_all_vars(t_env_var *env)
 static int	parse_export_arg(const char *arg, char **name, char **value)
 {
 	char		*eq;
-	size_t	len;
+	size_t		len;
 
 	if (!arg || !name || !value)
 		return (-1);
@@ -120,10 +132,7 @@ int	builtin_export(t_shell *sh, char **args)
 	while (args[i])
 	{
 		if (export_single_var(sh->env, args[i]) != 0)
-		{
-			
 			status = 1;
-		}
 		i++;
 	}
 	return (status);

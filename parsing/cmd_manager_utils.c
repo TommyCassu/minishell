@@ -6,13 +6,14 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 01:24:42 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/17 19:07:13 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 03:40:58 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	add_redir_ordered(t_cmd *cmd, int redirect, int append, const char *filename)
+void	add_redir_ordered(t_cmd *cmd, int redirect, int append
+	, const char *filename)
 {
 	t_redir_ordered	*new;
 	t_redir_ordered	*tmp;

@@ -6,35 +6,35 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/17 23:44:51 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 03:39:29 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
-#include "libft/libft.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <string.h>	 // a retirer
-#include <stdbool.h> // a retirer
+# include "libft/libft.h"
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <string.h>	 // a retirer
+# include <stdbool.h> // a retirer
 
-#include <errno.h> // verifier si on a le droit 
-#include <fcntl.h>
-#include <sys/wait.h>
+# include <errno.h> // verifier si on a le droit 
+# include <fcntl.h>
+# include <sys/wait.h>
 
-#define PIPE_READ 0
-#define PIPE_WRITE 1
-#define CMD_NOT_FOUND 127
-#define EXEC_ERROR 126
-#define GENERAL_ERROR 1
-#define SUCCESS 0
-#define FILE_PERMS 0644
+# define PIPE_READ 0
+# define PIPE_WRITE 1
+# define CMD_NOT_FOUND 127
+# define EXEC_ERROR 126
+# define GENERAL_ERROR 1
+# define SUCCESS 0
+# define FILE_PERMS 0644
 
-typedef enum
+typedef	enum
 {
 	WORD,
 	L_REDIRECT,
@@ -46,48 +46,47 @@ typedef enum
 	PIPE
 } t_type;
 
-
 typedef struct token
 {
-	char *value;
-	t_type type;
-	struct token *next;
-} t_token;
+	char			*value;
+	t_type			type;
+	struct token	*next;
+}	t_token;
 
-typedef struct s_redir_ordered {
-    int redirect; // 1 pour in, 0 pour out
-    int append;   // 1 pour >>, 0 pour >
-    char *filename;
-    struct s_redir_ordered *next;
-} t_redir_ordered;
+typedef struct	s_redir_ordered
+{
+	int						redirect;
+	int						append;
+	char					*filename;
+	struct s_redir_ordered	*next;
+}	t_redir_ordered;
 
 typedef struct cmd
 {
-	char **arguments;
-	char *l_redirect;
-	char *r_redirect;
-	char *app_redirect;
-	char *heredoc_buff;
-	t_redir_ordered *redir_list;
-	int previous_pipe;
-	int next_pipe;
-
-	struct cmd *next;
-} t_cmd;
+	char			**arguments;
+	char			*l_redirect;
+	char			*r_redirect;
+	char			*app_redirect;
+	char			*heredoc_buff;
+	t_redir_ordered	*redir_list;
+	int				previous_pipe;
+	int				next_pipe;
+	struct cmd		*next;
+}	t_cmd;
 
 typedef struct s_env_var
 {
 	char	*name;
 	char	*value;
-	struct s_env_var	*next;
-} t_env_var;
+	struct	s_env_var	*next;
+}	t_env_var;
 
 typedef struct s_shell
 {
 	t_env_var	*env;
 	int			global_status;
 	int			curr_line;
-} t_shell;
+}	t_shell;
 
 typedef struct s_parse_cmd
 {
@@ -98,17 +97,19 @@ typedef struct s_parse_cmd
     t_shell *shell;
 } t_parse_cmd;
 
-void    ft_free_token_list(t_token *tokens);
-void append_cmd(t_cmd **head, t_cmd *new_cmd);
+void	ft_free_token_list(t_token *tokens);
+void	append_cmd(t_cmd **head, t_cmd *new_cmd);
 /* Spliting*/
-t_token *tokenize(t_shell *shell, char *str);
-char *ft_clean_comment(char *str);
+t_token	*tokenize(t_shell *shell, char *str);
+char	*ft_clean_comment(char *str);
 /*      Spliting Utils */
-void _ft_free(char **result);
-int is_quote(char *str, int i);
-int check_in_quote(char *str, int i);
-int check_symbol(char *str, int i);
-int ft_countword_ms(char *str);
+void	ft_free(char **result);
+int		is_quote(char *str, int i);
+int		check_in_quote(char *str, int i);
+int		check_symbol(char *str, int i);
+int		ft_countword_ms(char *str);
+int		count_symbol_token(char *str, int *i);
+int		checking_char(char *str, int *i, int *in_word);
 char *_ft_strcpy(char *src, char *dest, int debut, int fin);
 char *extract_symbol_token(char *str, int *i);
 t_token *create_token(void *content);
@@ -116,7 +117,7 @@ void ft_lstadd_backs(t_token **tokens, t_token *new);
 void add_type(t_token *tokens);
 t_type get_type(t_token *tokens);
 
-int ft_count_quote(char *str);
+int ft_count_quote(t_shell *shell, char *str);
 int verif_input(t_shell *shell, char *str);
 void ft_clean(t_token *tokens);
 
@@ -140,6 +141,8 @@ void add_heredoc(t_cmd *cmd, t_token **tokens);
 t_cmd *parse_cmd(t_token *tokens, t_shell *shell);
 int	init_parse_struct(t_parse_cmd *parse, t_token *tokens, t_shell *shell);
 void ft_free_cmd_list(t_cmd *cmd);
+t_cmd	*ft_free_parse_cmd(t_parse_cmd *parse, t_cmd *result);
+int		error_parse(t_cmd **head_cmd, t_token *tokens, t_shell *shell);
 void clear_quote(t_token *tokens);
 
 /* Expansion */

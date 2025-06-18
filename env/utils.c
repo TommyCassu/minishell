@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/18 03:44:17 by tcassu            #+#    #+#             */
+/*   Updated: 2025/06/18 03:45:11 by tcassu           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	ft_lstiter_env(t_env_var *lst, void (*f)(void *))
@@ -13,7 +25,7 @@ void	ft_lstiter_env(t_env_var *lst, void (*f)(void *))
 
 void	ft_lstclear_env(t_env_var *lst)
 {
-	t_env_var *tmp;
+	t_env_var	*tmp;
 
 	if (!lst)
 		return ;
@@ -31,7 +43,6 @@ void	ft_lstclear_env(t_env_var *lst)
 	lst = NULL;
 }
 
-
 void	ft_lstadd_back_env(t_env_var **env, t_env_var *new)
 {
 	t_env_var	*last;
@@ -43,7 +54,7 @@ void	ft_lstadd_back_env(t_env_var **env, t_env_var *new)
 		*env = new;
 		return ;
 	}
-    last = *env;
+	last = *env;
 	while (last->next != NULL)
 		last = last->next;
 	last->next = new;
@@ -61,7 +72,6 @@ t_env_var	*ft_lstnew_env(const char *name, const char *value)
 	list->next = NULL;
 	return (list);
 }
-
 
 void	ft_lstdelone_env(t_env_var *lst, void (*del)(void*))
 {

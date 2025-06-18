@@ -584,8 +584,6 @@ export hola | unset hola | echo $?
 
 /bin/cd Desktop
 
-history
-
 [touche du haut]
 
 pwd
@@ -657,9 +655,6 @@ cd .././../.././../bin/ls
 cd /
 
 cd '/'
-
-cd //
-pwd
 
 cd '//'
 
@@ -781,6 +776,7 @@ cat bonjour
 
 echo que tal >> bonjour
 cat bonjour
+rm bonjour
 
 echo hola > bonjour
 echo que tal >> bonjour
@@ -1203,7 +1199,8 @@ cat c
 
 mkdir dir
 ls -la > dir/bonjour
-cat dir/bonjour"
+cat dir/bonjour
+rm dir/bonjour
 
 <a
 cat a

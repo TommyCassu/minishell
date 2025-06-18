@@ -1,0 +1,12 @@
+echo my shit terminal is [$TERM]
+
+cd --
+
+unset HOME
+cd $HOME
+
+mkdir dir
+ls -la > dir/bonjour
+cat dir/bonjour
+rm dir/bonjour
+

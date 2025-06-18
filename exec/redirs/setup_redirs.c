@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 02:08:06 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/15 01:37:42 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 03:50:21 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	setup_append_redir(const char *file)
 }
 
 /* Setup all redirections for a command */
-int setup_redirs(t_cmd *cmd)
+int	setup_redirs(t_cmd *cmd)
 {
 	if (cmd->heredoc_buff)
 		if (setup_heredoc(cmd) == -1)

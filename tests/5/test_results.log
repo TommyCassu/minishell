@@ -1,0 +1,2362 @@
+SHELL COMPARISON TESTS
+Date: Wed Jun 18 02:46:41 AM CEST 2025
+Test Run: 5
+
+━━━ Test 1: <>
+ ━━━
+BASH:
+syntax error near unexpected token `newline'
+echo $?
+2
+
+MINISHELL:
+syntax error near unexpected token `>'
+echo $?
+2
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 2: <<<<<<<<<<<<<<<<
+ ━━━
+BASH:
+syntax error near unexpected token `<<<'
+echo $?
+2
+
+MINISHELL:
+syntax error near unexpected token `<<'
+echo $?
+2
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 3: .
+ ━━━
+BASH:
+.: filename argument required
+.: usage: . filename [arguments]
+echo $?
+
+MINISHELL:
+.: Is a directory
+echo $?
+126
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 4: ..
+ ━━━
+BASH:
+..: command not found
+echo $?
+127
+
+MINISHELL:
+..: Is a directory
+echo $?
+126
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 5: ABC=hola
+ ━━━
+BASH:
+echo $?
+0
+
+MINISHELL:
+ABC=hola: command not found
+echo $?
+127
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 7: echo $9HOME
+ ━━━
+BASH:
+HOME
+echo $?
+0
+
+MINISHELL:
+$9HOME
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 8: $HOMEdskjhfkdshfsd
+ ━━━
+BASH:
+echo $?
+0
+
+MINISHELL:
+: command not found
+echo $?
+127
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 9: $DONTEXIST
+ ━━━
+BASH:
+echo $?
+0
+
+MINISHELL:
+: command not found
+echo $?
+127
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 10: export
+ ━━━
+BASH:
+export COLORTERM="truecolor"
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1"
+export DBUS_STARTER_ADDRESS="unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1"
+export DBUS_STARTER_BUS_TYPE="session"
+export DESKTOP_SESSION="gnome"
+export DISPLAY=":0"
+export GDMSESSION="gnome"
+export GDM_LANG="en_US.UTF-8"
+export GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
+export GNOME_SETUP_DISPLAY=":1"
+export GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e"
+export GNOME_TERMINAL_SERVICE=":1.102"
+export GTK_MODULES="gail:atk-bridge"
+export HOME="/home/tcassu"
+export LANG="en_US.UTF-8"
+export LESS="-R"
+export LOGNAME="tcassu"
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:"
+export OLDPWD="/home/tcassu/Documents/exam/minishell"
+export P9K_SSH="0"
+export P9K_TTY="old"
+export PAGER="less"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin"
+export PWD="/home/tcassu/Documents/exam/minishell"
+export QT_ACCESSIBILITY="1"
+export QT_IM_MODULE="ibus"
+export SESSION_MANAGER="local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454"
+export SHELL="/usr/bin/zsh"
+export SHLVL="3"
+export SSH_AGENT_LAUNCHER="openssh"
+export SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"
+export SYSTEMD_EXEC_PID="1454"
+export TERM="xterm-256color"
+export USER="tcassu"
+export USERNAME="tcassu"
+export VTE_VERSION="7006"
+export WAYLAND_DISPLAY="wayland-0"
+export XAUTHORITY="/run/user/1000/.mutter-Xwaylandauth.2YWC82"
+export XDG_CURRENT_DESKTOP="GNOME"
+export XDG_MENU_PREFIX="gnome-"
+export XDG_RUNTIME_DIR="/run/user/1000"
+export XDG_SESSION_CLASS="user"
+export XDG_SESSION_DESKTOP="gnome"
+export XDG_SESSION_TYPE="wayland"
+export XMODIFIERS="@im=ibus"
+export ZSH="/home/tcassu/.oh-my-zsh"
+export _="/usr/bin/expect"
+export _P9K_SSH_TTY="/dev/pts/2"
+export _P9K_TTY="/dev/pts/2"
+echo $?
+0
+
+MINISHELL:
+declare -x COLORTERM="truecolor"
+declare -x DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1"
+declare -x DBUS_STARTER_ADDRESS="unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1"
+declare -x DBUS_STARTER_BUS_TYPE="session"
+declare -x DESKTOP_SESSION="gnome"
+declare -x DISPLAY=":0"
+declare -x GDMSESSION="gnome"
+declare -x GDM_LANG="en_US.UTF-8"
+declare -x GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
+declare -x GNOME_SETUP_DISPLAY=":1"
+declare -x GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e"
+declare -x GNOME_TERMINAL_SERVICE=":1.102"
+declare -x GTK_MODULES="gail:atk-bridge"
+declare -x HOME="/home/tcassu"
+declare -x LANG="en_US.UTF-8"
+declare -x LESS="-R"
+declare -x LOGNAME="tcassu"
+declare -x LSCOLORS="Gxfxcxdxbxegedabagacad"
+declare -x LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:"
+declare -x OLDPWD="/home/tcassu/Documents/exam/minishell"
+declare -x P9K_SSH="0"
+declare -x P9K_TTY="old"
+declare -x PAGER="less"
+declare -x PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin"
+declare -x PWD="/home/tcassu/Documents/exam/minishell"
+declare -x QT_ACCESSIBILITY="1"
+declare -x QT_IM_MODULE="ibus"
+declare -x SESSION_MANAGER="local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454"
+declare -x SHELL="/usr/bin/zsh"
+declare -x SHLVL="3"
+declare -x SSH_AGENT_LAUNCHER="openssh"
+declare -x SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"
+declare -x SYSTEMD_EXEC_PID="1454"
+declare -x TERM="xterm-256color"
+declare -x USER="tcassu"
+declare -x USERNAME="tcassu"
+declare -x VTE_VERSION="7006"
+declare -x WAYLAND_DISPLAY="wayland-0"
+declare -x XAUTHORITY="/run/user/1000/.mutter-Xwaylandauth.2YWC82"
+declare -x XDG_CURRENT_DESKTOP="GNOME"
+declare -x XDG_MENU_PREFIX="gnome-"
+declare -x XDG_RUNTIME_DIR="/run/user/1000"
+declare -x XDG_SESSION_CLASS="user"
+declare -x XDG_SESSION_DESKTOP="gnome"
+declare -x XDG_SESSION_TYPE="wayland"
+declare -x XMODIFIERS="@im=ibus"
+declare -x ZSH="/home/tcassu/.oh-my-zsh"
+declare -x _P9K_SSH_TTY="/dev/pts/2"
+declare -x _P9K_TTY="/dev/pts/2"
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 11: export Hola
+export
+ ━━━
+BASH:
+export COLORTERM="truecolor"
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1"
+export DBUS_STARTER_ADDRESS="unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1"
+export DBUS_STARTER_BUS_TYPE="session"
+export DESKTOP_SESSION="gnome"
+export DISPLAY=":0"
+export GDMSESSION="gnome"
+export GDM_LANG="en_US.UTF-8"
+export GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
+export GNOME_SETUP_DISPLAY=":1"
+export GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e"
+export GNOME_TERMINAL_SERVICE=":1.102"
+export GTK_MODULES="gail:atk-bridge"
+export HOME="/home/tcassu"
+export LANG="en_US.UTF-8"
+export LESS="-R"
+export LOGNAME="tcassu"
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:"
+export OLDPWD="/home/tcassu/Documents/exam/minishell"
+export P9K_SSH="0"
+export P9K_TTY="old"
+export PAGER="less"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin"
+export PWD="/home/tcassu/Documents/exam/minishell"
+export QT_ACCESSIBILITY="1"
+export QT_IM_MODULE="ibus"
+export SESSION_MANAGER="local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454"
+export SHELL="/usr/bin/zsh"
+export SHLVL="3"
+export SSH_AGENT_LAUNCHER="openssh"
+export SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"
+export SYSTEMD_EXEC_PID="1454"
+export TERM="xterm-256color"
+export USER="tcassu"
+export USERNAME="tcassu"
+export VTE_VERSION="7006"
+export WAYLAND_DISPLAY="wayland-0"
+export XAUTHORITY="/run/user/1000/.mutter-Xwaylandauth.2YWC82"
+export XDG_CURRENT_DESKTOP="GNOME"
+export XDG_MENU_PREFIX="gnome-"
+export XDG_RUNTIME_DIR="/run/user/1000"
+export XDG_SESSION_CLASS="user"
+export XDG_SESSION_DESKTOP="gnome"
+export XDG_SESSION_TYPE="wayland"
+export XMODIFIERS="@im=ibus"
+export ZSH="/home/tcassu/.oh-my-zsh"
+export _P9K_SSH_TTY="/dev/pts/2"
+export _P9K_TTY="/dev/pts/2"
+echo $?
+0
+
+MINISHELL:
+declare -x COLORTERM="truecolor"
+declare -x DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1"
+declare -x DBUS_STARTER_ADDRESS="unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1"
+declare -x DBUS_STARTER_BUS_TYPE="session"
+declare -x DESKTOP_SESSION="gnome"
+declare -x DISPLAY=":0"
+declare -x GDMSESSION="gnome"
+declare -x GDM_LANG="en_US.UTF-8"
+declare -x GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
+declare -x GNOME_SETUP_DISPLAY=":1"
+declare -x GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e"
+declare -x GNOME_TERMINAL_SERVICE=":1.102"
+declare -x GTK_MODULES="gail:atk-bridge"
+declare -x HOME="/home/tcassu"
+declare -x Hola
+declare -x LANG="en_US.UTF-8"
+declare -x LESS="-R"
+declare -x LOGNAME="tcassu"
+declare -x LSCOLORS="Gxfxcxdxbxegedabagacad"
+declare -x LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:"
+declare -x OLDPWD="/home/tcassu/Documents/exam/minishell"
+declare -x P9K_SSH="0"
+declare -x P9K_TTY="old"
+declare -x PAGER="less"
+declare -x PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin"
+declare -x PWD="/home/tcassu/Documents/exam/minishell"
+declare -x QT_ACCESSIBILITY="1"
+declare -x QT_IM_MODULE="ibus"
+declare -x SESSION_MANAGER="local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454"
+declare -x SHELL="/usr/bin/zsh"
+declare -x SHLVL="3"
+declare -x SSH_AGENT_LAUNCHER="openssh"
+declare -x SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"
+declare -x SYSTEMD_EXEC_PID="1454"
+declare -x TERM="xterm-256color"
+declare -x USER="tcassu"
+declare -x USERNAME="tcassu"
+declare -x VTE_VERSION="7006"
+declare -x WAYLAND_DISPLAY="wayland-0"
+declare -x XAUTHORITY="/run/user/1000/.mutter-Xwaylandauth.2YWC82"
+declare -x XDG_CURRENT_DESKTOP="GNOME"
+declare -x XDG_MENU_PREFIX="gnome-"
+declare -x XDG_RUNTIME_DIR="/run/user/1000"
+declare -x XDG_SESSION_CLASS="user"
+declare -x XDG_SESSION_DESKTOP="gnome"
+declare -x XDG_SESSION_TYPE="wayland"
+declare -x XMODIFIERS="@im=ibus"
+declare -x ZSH="/home/tcassu/.oh-my-zsh"
+declare -x _P9K_SSH_TTY="/dev/pts/2"
+declare -x _P9K_TTY="/dev/pts/2"
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 12: export Hola9hey
+export
+ ━━━
+BASH:
+export COLORTERM="truecolor"
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1"
+export DBUS_STARTER_ADDRESS="unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1"
+export DBUS_STARTER_BUS_TYPE="session"
+export DESKTOP_SESSION="gnome"
+export DISPLAY=":0"
+export GDMSESSION="gnome"
+export GDM_LANG="en_US.UTF-8"
+export GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
+export GNOME_SETUP_DISPLAY=":1"
+export GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e"
+export GNOME_TERMINAL_SERVICE=":1.102"
+export GTK_MODULES="gail:atk-bridge"
+export HOME="/home/tcassu"
+export LANG="en_US.UTF-8"
+export LESS="-R"
+export LOGNAME="tcassu"
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:"
+export OLDPWD="/home/tcassu/Documents/exam/minishell"
+export P9K_SSH="0"
+export P9K_TTY="old"
+export PAGER="less"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin"
+export PWD="/home/tcassu/Documents/exam/minishell"
+export QT_ACCESSIBILITY="1"
+export QT_IM_MODULE="ibus"
+export SESSION_MANAGER="local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454"
+export SHELL="/usr/bin/zsh"
+export SHLVL="3"
+export SSH_AGENT_LAUNCHER="openssh"
+export SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"
+export SYSTEMD_EXEC_PID="1454"
+export TERM="xterm-256color"
+export USER="tcassu"
+export USERNAME="tcassu"
+export VTE_VERSION="7006"
+export WAYLAND_DISPLAY="wayland-0"
+export XAUTHORITY="/run/user/1000/.mutter-Xwaylandauth.2YWC82"
+export XDG_CURRENT_DESKTOP="GNOME"
+export XDG_MENU_PREFIX="gnome-"
+export XDG_RUNTIME_DIR="/run/user/1000"
+export XDG_SESSION_CLASS="user"
+export XDG_SESSION_DESKTOP="gnome"
+export XDG_SESSION_TYPE="wayland"
+export XMODIFIERS="@im=ibus"
+export ZSH="/home/tcassu/.oh-my-zsh"
+export _P9K_SSH_TTY="/dev/pts/2"
+export _P9K_TTY="/dev/pts/2"
+echo $?
+0
+
+MINISHELL:
+declare -x COLORTERM="truecolor"
+declare -x DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1"
+declare -x DBUS_STARTER_ADDRESS="unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1"
+declare -x DBUS_STARTER_BUS_TYPE="session"
+declare -x DESKTOP_SESSION="gnome"
+declare -x DISPLAY=":0"
+declare -x GDMSESSION="gnome"
+declare -x GDM_LANG="en_US.UTF-8"
+declare -x GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
+declare -x GNOME_SETUP_DISPLAY=":1"
+declare -x GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e"
+declare -x GNOME_TERMINAL_SERVICE=":1.102"
+declare -x GTK_MODULES="gail:atk-bridge"
+declare -x HOME="/home/tcassu"
+declare -x Hola9hey
+declare -x LANG="en_US.UTF-8"
+declare -x LESS="-R"
+declare -x LOGNAME="tcassu"
+declare -x LSCOLORS="Gxfxcxdxbxegedabagacad"
+declare -x LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:"
+declare -x OLDPWD="/home/tcassu/Documents/exam/minishell"
+declare -x P9K_SSH="0"
+declare -x P9K_TTY="old"
+declare -x PAGER="less"
+declare -x PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin"
+declare -x PWD="/home/tcassu/Documents/exam/minishell"
+declare -x QT_ACCESSIBILITY="1"
+declare -x QT_IM_MODULE="ibus"
+declare -x SESSION_MANAGER="local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454"
+declare -x SHELL="/usr/bin/zsh"
+declare -x SHLVL="3"
+declare -x SSH_AGENT_LAUNCHER="openssh"
+declare -x SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"
+declare -x SYSTEMD_EXEC_PID="1454"
+declare -x TERM="xterm-256color"
+declare -x USER="tcassu"
+declare -x USERNAME="tcassu"
+declare -x VTE_VERSION="7006"
+declare -x WAYLAND_DISPLAY="wayland-0"
+declare -x XAUTHORITY="/run/user/1000/.mutter-Xwaylandauth.2YWC82"
+declare -x XDG_CURRENT_DESKTOP="GNOME"
+declare -x XDG_MENU_PREFIX="gnome-"
+declare -x XDG_RUNTIME_DIR="/run/user/1000"
+declare -x XDG_SESSION_CLASS="user"
+declare -x XDG_SESSION_DESKTOP="gnome"
+declare -x XDG_SESSION_TYPE="wayland"
+declare -x XMODIFIERS="@im=ibus"
+declare -x ZSH="/home/tcassu/.oh-my-zsh"
+declare -x _P9K_SSH_TTY="/dev/pts/2"
+declare -x _P9K_TTY="/dev/pts/2"
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 13: export $DONTEXIST
+ ━━━
+BASH:
+export COLORTERM="truecolor"
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1"
+export DBUS_STARTER_ADDRESS="unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1"
+export DBUS_STARTER_BUS_TYPE="session"
+export DESKTOP_SESSION="gnome"
+export DISPLAY=":0"
+export GDMSESSION="gnome"
+export GDM_LANG="en_US.UTF-8"
+export GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
+export GNOME_SETUP_DISPLAY=":1"
+export GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e"
+export GNOME_TERMINAL_SERVICE=":1.102"
+export GTK_MODULES="gail:atk-bridge"
+export HOME="/home/tcassu"
+export LANG="en_US.UTF-8"
+export LESS="-R"
+export LOGNAME="tcassu"
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:"
+export OLDPWD="/home/tcassu/Documents/exam/minishell"
+export P9K_SSH="0"
+export P9K_TTY="old"
+export PAGER="less"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin"
+export PWD="/home/tcassu/Documents/exam/minishell"
+export QT_ACCESSIBILITY="1"
+export QT_IM_MODULE="ibus"
+export SESSION_MANAGER="local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454"
+export SHELL="/usr/bin/zsh"
+export SHLVL="3"
+export SSH_AGENT_LAUNCHER="openssh"
+export SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"
+export SYSTEMD_EXEC_PID="1454"
+export TERM="xterm-256color"
+export USER="tcassu"
+export USERNAME="tcassu"
+export VTE_VERSION="7006"
+export WAYLAND_DISPLAY="wayland-0"
+export XAUTHORITY="/run/user/1000/.mutter-Xwaylandauth.2YWC82"
+export XDG_CURRENT_DESKTOP="GNOME"
+export XDG_MENU_PREFIX="gnome-"
+export XDG_RUNTIME_DIR="/run/user/1000"
+export XDG_SESSION_CLASS="user"
+export XDG_SESSION_DESKTOP="gnome"
+export XDG_SESSION_TYPE="wayland"
+export XMODIFIERS="@im=ibus"
+export ZSH="/home/tcassu/.oh-my-zsh"
+export _="/usr/bin/expect"
+export _P9K_SSH_TTY="/dev/pts/2"
+export _P9K_TTY="/dev/pts/2"
+echo $?
+0
+
+MINISHELL:
+export: `': not a valid identifier
+echo $?
+1
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 14: export | grep "HOME"
+ ━━━
+BASH:
+export HOME="/home/tcassu"
+echo $?
+0
+
+MINISHELL:
+declare -x HOME="/home/tcassu"
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 15: export -HOLA=bonjour
+ ━━━
+BASH:
+export: -H: invalid option
+export: usage: export [-fn] [name[=value] ...] or export -p
+echo $?
+2
+
+MINISHELL:
+export: `-HOLA=bonjour': not a valid identifier
+echo $?
+1
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 16: export --HOLA=bonjour
+ ━━━
+BASH:
+export: --: invalid option
+export: usage: export [-fn] [name[=value] ...] or export -p
+echo $?
+2
+
+MINISHELL:
+export: `--HOLA=bonjour': not a valid identifier
+echo $?
+1
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 17: export HO!LA=bonjour
+ ━━━
+BASH:
+!LA=bonjour: event not found
+echo $?
+0
+
+MINISHELL:
+export: `HO!LA=bonjour': not a valid identifier
+echo $?
+1
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 18: export HOLA='""'
+echo "" $HOLA "" | cat -e
+ ━━━
+BASH:
+"" $
+echo $?
+0
+
+MINISHELL:
+$
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 19: export """" HOLA=bonjour
+env
+ ━━━
+BASH:
+export: `': not a valid identifier
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+XDG_SESSION_DESKTOP=gnome
+LOGNAME=tcassu
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+HOLA=bonjour
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=/usr/bin/env
+echo $?
+0
+
+MINISHELL:
+export: `': not a valid identifier
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+LOGNAME=tcassu
+XDG_SESSION_DESKTOP=gnome
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=env
+HOLA=bonjour
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 20: export HOLA=""l""
+$HOLAs
+ ━━━
+BASH:
+echo $?
+0
+
+MINISHELL:
+: command not found
+echo $?
+127
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 21: export HOL=A=bonjour
+env
+ ━━━
+BASH:
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+XDG_SESSION_DESKTOP=gnome
+LOGNAME=tcassu
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+HOL=A=bonjour
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=/usr/bin/env
+echo $?
+0
+
+MINISHELL:
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+LOGNAME=tcassu
+XDG_SESSION_DESKTOP=gnome
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=env
+HOL=A=bonjour
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 22: export HOL=A=""""
+env
+ ━━━
+BASH:
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+XDG_SESSION_DESKTOP=gnome
+LOGNAME=tcassu
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+HOL=A=
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=/usr/bin/env
+echo $?
+0
+
+MINISHELL:
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+LOGNAME=tcassu
+XDG_SESSION_DESKTOP=gnome
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=env
+HOL=A=
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 23: export TE+S=T
+env
+ ━━━
+BASH:
+export: `TE+S=T': not a valid identifier
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+XDG_SESSION_DESKTOP=gnome
+LOGNAME=tcassu
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=/usr/bin/env
+echo $?
+0
+
+MINISHELL:
+export: `TE+S=T': not a valid identifier
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+LOGNAME=tcassu
+XDG_SESSION_DESKTOP=gnome
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=env
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 24: export HOLA=bonjour
+env
+unset HOLA
+env
+ ━━━
+BASH:
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+XDG_SESSION_DESKTOP=gnome
+LOGNAME=tcassu
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+HOLA=bonjour
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=/usr/bin/env
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+XDG_SESSION_DESKTOP=gnome
+LOGNAME=tcassu
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=/usr/bin/env
+echo $?
+0
+
+MINISHELL:
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+LOGNAME=tcassu
+XDG_SESSION_DESKTOP=gnome
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=env
+HOLA=bonjour
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+LOGNAME=tcassu
+XDG_SESSION_DESKTOP=gnome
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=env
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 25: export HOLA=bonjour
+env
+unset HOLA
+unset HOLA
+env
+ ━━━
+BASH:
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+XDG_SESSION_DESKTOP=gnome
+LOGNAME=tcassu
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+HOLA=bonjour
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=/usr/bin/env
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+XDG_SESSION_DESKTOP=gnome
+LOGNAME=tcassu
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=/usr/bin/env
+echo $?
+0
+
+MINISHELL:
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+LOGNAME=tcassu
+XDG_SESSION_DESKTOP=gnome
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=env
+HOLA=bonjour
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+LOGNAME=tcassu
+XDG_SESSION_DESKTOP=gnome
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+OLDPWD=/home/tcassu/Documents/exam/minishell
+_=env
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 26: unset PATH
+ls
+ ━━━
+BASH:
+ls: No such file or directory
+echo $?
+127
+
+MINISHELL:
+echo $?
+126
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 27: pwd
+unset PWD
+env | grep PWD
+cd $PWD
+pwd
+ ━━━
+BASH:
+/home/tcassu/Documents/exam/minishell
+OLDPWD=/home/tcassu/Documents/exam/minishell
+/home/tcassu
+echo $?
+0
+
+MINISHELL:
+/home/tcassu/Documents/exam/minishell
+OLDPWD=/home/tcassu/Documents/exam/minishell
+cd: : No such file or directory
+/home/tcassu/Documents/exam/minishell
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 28: unset OLDPWD
+env | grep OLDPWD
+ ━━━
+BASH:
+echo $?
+1
+
+MINISHELL:
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 29: unset -HOLA
+ ━━━
+BASH:
+unset: -H: invalid option
+unset: usage: unset [-f] [-v] [-n] [name ...]
+echo $?
+2
+
+MINISHELL:
+unset: -HOLA: invalid option
+echo $?
+2
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 30: unset PATH
+cat Makefile
+ ━━━
+BASH:
+cat: No such file or directory
+echo $?
+127
+
+MINISHELL:
+echo $?
+126
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 31: /bin/env
+ ━━━
+BASH:
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+XDG_SESSION_DESKTOP=gnome
+LOGNAME=tcassu
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+_=/bin/env
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+OLDPWD=/home/tcassu/Documents/exam/minishell
+echo $?
+0
+
+MINISHELL:
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/42Perso:@/tmp/.ICE-unix/1454,unix/42Perso:/tmp/.ICE-unix/1454
+QT_ACCESSIBILITY=1
+COLORTERM=truecolor
+SSH_AGENT_LAUNCHER=openssh
+LESS=-R
+XDG_MENU_PREFIX=gnome-
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+_P9K_TTY=/dev/pts/2
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+P9K_TTY=old
+XMODIFIERS=@im=ibus
+DESKTOP_SESSION=gnome
+GTK_MODULES=gail:atk-bridge
+DBUS_STARTER_BUS_TYPE=session
+PWD=/home/tcassu/Documents/exam/minishell
+LOGNAME=tcassu
+XDG_SESSION_DESKTOP=gnome
+XDG_SESSION_TYPE=wayland
+SYSTEMD_EXEC_PID=1454
+XAUTHORITY=/run/user/1000/.mutter-Xwaylandauth.2YWC82
+GDM_LANG=en_US.UTF-8
+HOME=/home/tcassu
+USERNAME=tcassu
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=7006
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/717463e0_d467_49da_a2a4_56eb4c18be7e
+GNOME_SETUP_DISPLAY=:1
+XDG_SESSION_CLASS=user
+TERM=xterm-256color
+ZSH=/home/tcassu/.oh-my-zsh
+USER=tcassu
+GNOME_TERMINAL_SERVICE=:1.102
+DISPLAY=:0
+SHLVL=3
+PAGER=less
+QT_IM_MODULE=ibus
+_P9K_SSH_TTY=/dev/pts/2
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+XDG_RUNTIME_DIR=/run/user/1000
+P9K_SSH=0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/tcassu/.local/bin
+GDMSESSION=gnome
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus,guid=2c27bebee7c729b6fab666426851ffb1
+OLDPWD=/home/tcassu/Documents/exam/minishell
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 32: history
+ ━━━
+BASH:
+2  echo hola >> bonjour > hello > bonjour
+3  cat bonjour
+4  cat hello
+5  echo $?
+6  exit
+7  echo hola > bonjour
+8  echo hey > hello
+9  echo hola >> bonjour > hello > bonjour
+10  cat bonjour
+11  cat hello
+12  echo $?
+13  exit
+14  echo hola > bonjour
+15  echo hey > hello
+16  rm bonjour hello
+17  echo hola >> bonjour >> hello >> bonjour
+18  cat bonjour
+19  cat hello
+20  echo $?
+21  exit
+22  echo hola > bonjour
+23  echo hey > hello
+24  echo hola >> bonjour >> hello >> bonjour
+25  cat bonjour
+26  cat hello
+27  echo $?
+28  exit
+29  > bonjour echo hola bonjour
+30  cat bonjour
+31  echo $?
+32  exit
+33  >bonjour echo > hola>bonjour>hola>>bonjour>hola hey >bonjour hola >hola
+34  cat bonjour
+35  cat hola
+36  echo $?
+37  exit
+38  echo bonjour > hola1
+39  echo hello > hola2
+40  echo 2 >hola1 >> hola2
+41  ls
+42  cat hola1
+43  cat hola2
+44  echo $?
+45  exit
+46  echo bonjour > hola1
+47  echo hello > hola2
+48  echo 2 >>hola1 > hola2
+49  ls
+50  cat hola1
+51  cat hola2
+52  echo $?
+53  exit
+54  > pwd
+55  ls
+56  < pwd
+57  cat <pwd
+58  echo $?
+59  exit
+60  cat <srcs/pwd
+61  echo $?
+62  exit
+63  cat <../pwd
+64  echo $?
+65  exit
+66  cat >>
+67  echo $?
+68  exit
+69  cat >>>
+70  echo $?
+71  exit
+72  cat >> <<
+73  echo $?
+74  exit
+75  cat >> > >> << >>
+76  echo $?
+77  exit
+78  cat < ls
+79  echo $?
+80  exit
+81  cat < ls > ls
+82  echo $?
+83  exit
+84  cat > ls1 < ls2
+85  echo $?
+86  exit
+87  ls
+88  echo $?
+89  exit
+90  >>hola
+91  cat hola
+92  echo $?
+93  exit
+94  echo hola > bonjour
+95  cat < bonjour
+96  echo $?
+97  exit
+98  echo hola >bonjour
+99  cat <bonjour
+100  echo $?
+101  exit
+102  echo hola>bonjour
+103  cat<bonjour
+104  echo $?
+105  exit
+106  echo hola> bonjour
+107  cat< bonjour
+108  echo $?
+109  exit
+110  echo hola >bonjour
+111  cat< bonjour
+112  echo $?
+113  exit
+114  echo hola > bonjour
+115  cat < bonjour
+116  echo $?
+117  exit
+118  echo hola > srcs/bonjour
+119  cat < srcs/bonjour
+120  echo $?
+121  exit
+122  echo hola >srcs/bonjour
+123  cat <srcs/bonjour
+124  echo $?
+125  exit
+126  echo hola > bonjour
+127  echo que tal >> bonjour
+128  cat < bonjour
+129  echo $?
+130  exit
+131  echo hola > bonjour
+132  rm bonjour
+133  echo que tal >> bonjour
+134  cat < bonjour
+135  echo $?
+136  exit
+137  e'c'"h"o hola > bonjour
+138  cat 'bo'"n"jour
+139  echo $?
+140  exit
+141  echo hola > bonjour hey
+142  ls
+143  cat bonjour
+144  cat hey
+145  echo $?
+146  exit
+147  echo hola > srcs/bonjour
+148  echo hey > srcs/hello
+149  >srcs/bonjour >srcs/hello <prout
+150  cat srcs/bonjour srcs/hello
+151  echo $?
+152  exit
+153  echo hola > srcs/bonjour
+154  echo hey > srcs/hello
+155  rm srcs/bonjour srcs/hello
+156  >srcs/bonjour >srcs/hello <prout
+157  ls srcs
+158  cat srcs/bonjour srcs/hello
+159  echo $?
+160  exit
+161  echo hola > srcs/bonjour
+162  echo hey > srcs/hello
+163  >srcs/bonjour <prout >srcs/hello
+164  cat srcs/bonjour
+165  cat srcs/hello
+166  echo $?
+167  exit
+168  echo hola > srcs/bonjour
+169  echo hey > srcs/hello
+170  rm srcs/bonjour srcs/hello
+171  >srcs/bonjour <prout >srcs/hello
+172  ls srcs
+173  cat srcs/bonjour
+174  echo $?
+175  exit
+176  echo hola > ../bonjour
+177  echo hey > ../hello
+178  >../bonjour >../hello <prout
+179  cat ../bonjour ../hello
+180  echo $?
+181  exit
+182  echo hola > ../bonjour
+183  echo hey > ../hello
+184  rm ../bonjour ../hello
+185  >../bonjour >../hello <prout
+186  ls ..
+187  cat ../bonjour ../hello
+188  echo $?
+189  exit
+190  echo hola > ../bonjour
+191  echo hey > ../hello
+192  >../bonjour <prout >../hello
+193  cat ../bonjour
+194  cat ../hello
+195  echo $?
+196  exit
+197  echo hola > ../bonjour
+198  echo hey > ../hello
+199  rm ../bonjour ../hello
+200  >../bonjour <prout >../hello
+201  ls ..
+202  cat ../bonjour
+203  echo $?
+204  exit
+205  echo hola > srcs/bonjour
+206  echo hey > srcs/hello
+207  >srcs/bonjour >>srcs/hello <prout
+208  cat srcs/bonjour
+209  cat srcs/hello
+210  echo $?
+211  exit
+212  echo hola > srcs/bonjour
+213  echo hey > srcs/hello
+214  >>srcs/bonjour >srcs/hello <prout
+215  cat srcs/bonjour
+216  cat srcs/hello
+217  echo $?
+218  exit
+219  echo hola > srcs/bonjour
+220  echo hey > srcs/hello
+221  >>srcs/bonjour >>srcs/hello <prout
+222  cat srcs/bonjour
+223  cat srcs/hello
+224  echo $?
+225  exit
+226  echo hola > srcs/bonjour
+227  echo hey > srcs/hello
+228  >srcs/bonjour <prout >>srcs/hello
+229  cat srcs/bonjour
+230  cat srcs/hello
+231  echo $?
+232  exit
+233  echo hola > srcs/bonjour
+234  echo hey > srcs/hello
+235  >>srcs/bonjour <prout >srcs/hello
+236  cat srcs/bonjour
+237  cat srcs/hello
+238  echo $?
+239  exit
+240  echo hola > srcs/bonjour
+241  echo hey > srcs/hello
+242  >>srcs/bonjour <prout >>srcs/hello
+243  cat srcs/bonjour
+244  cat srcs/hello
+245  echo $?
+246  exit
+247  echo hola > srcs/bonjour
+248  echo hey > srcs/hello
+249  <prout >>srcs/bonjour >>srcs/hello
+250  cat srcs/bonjour
+251  cat srcs/hello
+252  echo $?
+253  exit
+254  echo hola > bonjour
+255  echo hey > hello
+256  <bonjour >hello
+257  cat bonjour
+258  cat hello
+259  echo $?
+260  exit
+261  echo hola > bonjour
+262  echo hey > hello
+263  >bonjour >hello < prout
+264  cat bonjour
+265  cat hello
+266  echo $?
+267  exit
+268  echo hola > bonjour
+269  echo hey > hello
+270  rm bonjour hello
+271  >bonjour >hello < prout
+272  cat bonjour
+273  cat hello
+274  echo $?
+275  exit
+276  echo hola > bonjour
+277  echo hey > hello
+278  >bonjour <prout hello
+279  cat bonjour
+280  cat hello
+281  echo $?
+282  exit
+283  echo hola > bonjour
+284  echo hey > hello
+285  rm bonjour hello
+286  >bonjour <prout hello
+287  cat bonjour
+288  echo $?
+289  exit
+290  echo hola > bonjour
+291  <bonjour cat | wc > bonjour
+292  cat bonjour
+293  echo $?
+294  exit
+295  rm -f bonjour
+296  rm bonjour > bonjour
+297  ls -l bonjour
+298  echo $?
+299  exit
+300  export HOLA="bonjour hello"
+301  >$HOLA
+302  ls
+303  echo $?
+304  exit
+305  export HOLA="bonjour hello"
+306  >"$HOLA"
+307  ls
+308  echo $?
+309  exit
+310  export HOLA="bonjour hello"
+311  >$"HOLA"
+312  ls
+313  echo $?
+314  exit
+315  export HOLA="bonjour hello"
+316  >$HOLA>hey
+317  ls
+318  echo $?
+319  exit
+320  export HOLA="bonjour hello"
+321  >hey>$HOLA
+322  ls
+323  echo $?
+324  exit
+325  export HOLA="bonjour hello"
+326  >hey>$HOLA>hey>hey
+327  ls
+328  echo $?
+329  exit
+330  export A=hey
+331  export A B=Hola D E C="Que Tal"
+332  echo $PROUT$B$C > /tmp/a > /tmp/b > /tmp/c
+333  cat /tmp/a
+334  cat /tmp/b
+335  cat /tmp/c
+336  echo $?
+337  exit
+338  <a cat <b <c
+339  echo $?
+340  exit
+341  <a cat <b <c
+342  cat a
+343  cat b
+344  cat c
+345  echo $?
+346  exit
+347  >a ls >b >>c >d
+348  cat a
+349  cat b
+350  cat c
+351  cat d
+352  echo $?
+353  exit
+354  >a ls >b >>c >d
+355  cat a
+356  cat b
+357  cat c
+358  cat d
+359  echo $?
+360  exit
+361  echo hola > a > b > c
+362  cat a
+363  cat b
+364  cat c
+365  echo $?
+366  exit
+367  mkdir dir
+368  ls -la > dir/bonjour
+369  cat dir/bonjour"
+370  echo $?
+371  exit
+372  <a
+373  cat a
+374  echo $?
+375  exit
+376  >d cat <a >>e
+377  cat a
+378  cat d
+379  cat e
+380  echo $?
+381  exit
+382  < a > b cat > hey >> d
+383  cat d
+384  ls
+385  echo $?
+386  exit
+387  <>
+388  echo $?
+389  exit
+390  <<<<<<<<<<<<<<<<
+391  echo $?
+392  exit
+393  .
+394  echo $?
+395  exit
+396  ..
+397  echo $?
+398  exit
+399  ABC=hola
+400  echo $?
+401  exit
+402  echo my shit terminal is [$TERM]
+403  echo $?
+404  exit
+405  echo $9HOME
+406  echo $?
+407  exit
+408  $HOMEdskjhfkdshfsd
+409  echo $?
+410  exit
+411  $DONTEXIST
+412  echo $?
+413  exit
+414  export
+415  echo $?
+416  exit
+417  export Hola
+418  export
+419  echo $?
+420  exit
+421  export Hola9hey
+422  export
+423  echo $?
+424  exit
+425  export $DONTEXIST
+426  echo $?
+427  exit
+428  export | grep "HOME"
+429  echo $?
+430  exit
+431  export -HOLA=bonjour
+432  echo $?
+433  exit
+434  export --HOLA=bonjour
+435  echo $?
+436  exit
+437  echo $?
+438  exit
+439  export HOLA='""'
+440  echo "" $HOLA "" | cat -e
+441  echo $?
+442  exit
+443  export """" HOLA=bonjour
+444  env
+445  echo $?
+446  exit
+447  export HOLA=""l""
+448  $HOLAs
+449  echo $?
+450  exit
+451  export HOL=A=bonjour
+452  env
+453  echo $?
+454  exit
+455  export HOL=A=""""
+456  env
+457  echo $?
+458  exit
+459  export TE+S=T
+460  env
+461  echo $?
+462  exit
+463  export HOLA=bonjour
+464  env
+465  unset HOLA
+466  env
+467  echo $?
+468  exit
+469  export HOLA=bonjour
+470  env
+471  unset HOLA
+472  unset HOLA
+473  env
+474  echo $?
+475  exit
+476  unset PATH
+477  ls
+478  echo $?
+479  exit
+480  pwd
+481  unset PWD
+482  env | grep PWD
+483  cd $PWD
+484  pwd
+485  echo $?
+486  exit
+487  unset OLDPWD
+488  env | grep OLDPWD
+489  echo $?
+490  exit
+491  unset -HOLA
+492  echo $?
+493  exit
+494  unset PATH
+495  cat Makefile
+496  echo $?
+497  exit
+498  /bin/env
+499  echo $?
+500  exit
+501  history
+echo $?
+0
+
+MINISHELL:
+history: command not found
+echo $?
+127
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 33: pwd -p
+ ━━━
+BASH:
+pwd: -p: invalid option
+pwd: usage: pwd [-LP]
+echo $?
+2
+
+MINISHELL:
+pwd: -p: invalid option
+echo $?
+2
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 34: pwd --p
+ ━━━
+BASH:
+pwd: --: invalid option
+pwd: usage: pwd [-LP]
+echo $?
+2
+
+MINISHELL:
+pwd: --p: invalid option
+echo $?
+2
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 35: pwd ---p
+ ━━━
+BASH:
+pwd: --: invalid option
+pwd: usage: pwd [-LP]
+echo $?
+2
+
+MINISHELL:
+pwd: ---p: invalid option
+echo $?
+2
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 36: cd //
+pwd
+ ━━━
+BASH:
+//
+echo $?
+0
+
+MINISHELL:
+/home/tcassu
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 38: cd ---
+ ━━━
+BASH:
+cd: --: invalid option
+cd: usage: cd [-L|[-P [-e]] [-@]] [dir]
+echo $?
+2
+
+MINISHELL:
+echo $?
+0
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 40: unset HOME
+export HOME=
+cd
+ ━━━
+BASH:
+echo $?
+0
+
+MINISHELL:
+cd: : No such file or directory
+echo $?
+1
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 41: unset HOME
+export HOME
+cd
+ ━━━
+BASH:
+cd: HOME not set
+echo $?
+1
+
+MINISHELL:
+cd: : No such file or directory
+echo $?
+1
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━ Test 42: echo que tal >> bonjour
+cat bonjour
+rm dir/bonjour
+ ━━━
+BASH:
+que tal
+rm: cannot remove 'dir/bonjour': No such file or directory
+echo $?
+1
+
+MINISHELL:
+que tal
+que tal
+rm: cannot remove 'dir/bonjour': No such file or directory
+echo $?
+1
+
+✗ DIFFER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TESTS COMPLETE

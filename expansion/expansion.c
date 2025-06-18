@@ -6,106 +6,106 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 21:05:37 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/17 18:42:30 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 03:53:06 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char    *expand_tildes(t_shell *shell, char *value)
+char	*expand_tildes(t_shell *shell, char *value)
 {
-    char    *env_var;
-    char    *new_value;
-    
-    if (ft_strcmp(value, "~") == 0)
-    {
-        env_var = env_get(shell->env, "HOME");
-        free(value);
-        if (env_var)
-            return (ft_strdup(env_var));
-        else
-            return (ft_strdup(""));
-    }
-    if (value[0] == '~' && value[1] == '/')
-    {
-        env_var = env_get(shell->env, "HOME");
-        new_value = ft_strjoin(env_var, (value + 2));
-        free(value);
-        return (new_value);
-    }
-    return (value);
+	char	*env_var;
+	char	*new_value;
+
+	if (ft_strcmp(value, "~") == 0)
+	{
+		env_var = env_get(shell->env, "HOME");
+		free(value);
+		if (env_var)
+			return (ft_strdup(env_var));
+		else
+			return (ft_strdup(""));
+	}
+	if (value[0] == '~' && value[1] == '/')
+	{
+		env_var = env_get(shell->env, "HOME");
+		new_value = ft_strjoin(env_var, (value + 2));
+		free(value);
+		return (new_value);
+	}
+	return (value);
 }
 
-char    *expand_cmd_code(t_shell *shell, char *value)
+char	*expand_cmd_code(t_shell *shell, char *value)
 {
-    char    *code;
-    char    *result;
-    
-    code = ft_itoa(shell->global_status);
-    result = replace_cmd_code(value, code);
-    free(code);
-    free(value);
-    return (result);
+	char	*code;
+	char	*result;
+
+	code = ft_itoa(shell->global_status);
+	result = replace_cmd_code(value, code);
+	free(code);
+	free(value);
+	return (result);
 }
 
-void    expand_one(t_shell *shell, const char *value, char **exp, int *skip)
-{ 
-    if (value[1] == '{')
-        expand_brace(shell, value, exp , skip);
-    else if (ft_isalpha(value[1]) || value[1] == '_')
-        expand_simple(shell, value, exp , skip);
-    else
-    {
-       *exp = ft_strdup("$");
-       *skip = 1;
-    }
+void	expand_one(t_shell *shell, const char *value, char **exp, int *skip)
+{
+	if (value[1] == '{')
+		expand_brace(shell, value, exp, skip);
+	else if (ft_isalpha(value[1]) || value[1] == '_')
+		expand_simple(shell, value, exp, skip);
+	else
+	{
+		*exp = ft_strdup("$");
+		*skip = 1;
+	}
 }
 
-char    *expand_var(t_shell *shell, char *value)
+char	*expand_var(t_shell *shell, char *value)
 {
-    char    *new_value;
-    char    *expansion;
-    char    tmp[2];
-    int     skip;
-    int i;
+	char	*new_value;
+	char	*expansion;
+	char	tmp[2];
+	int		skip;
+	int		i;
 
-    i = 0;
-    new_value = ft_strdup("");
-    while (value[i])
-    {
-        if (value[i] == '$' && check_in_quote(value, i) != 1)
-        {
-            expand_one(shell, value + i, &expansion, &skip);
-            new_value = ft_strjoin_free(new_value, expansion);
-            free(expansion);
-            i += skip;
-        }
-        else
-        {
-            tmp[0] = value[i];
-            tmp[1] = '\0';
-            new_value = ft_strjoin_free(new_value, tmp);
-            i++;
-        }
-    }
-    free(value);
-    return (new_value);
+	i = 0;
+	new_value = ft_strdup("");
+	while (value[i])
+	{
+		if (value[i] == '$' && check_in_quote(value, i) != 1)
+		{
+			expand_one(shell, value + i, &expansion, &skip);
+			new_value = ft_strjoin_free(new_value, expansion);
+			free(expansion);
+			i += skip;
+		}
+		else
+		{
+			tmp[0] = value[i];
+			tmp[1] = '\0';
+			new_value = ft_strjoin_free(new_value, tmp);
+			i++;
+		}
+	}
+	free(value);
+	return (new_value);
 }
 
-void    expansion(t_shell *shell, t_token *tokens)
+void	expansion(t_shell *shell, t_token *tokens)
 {
-    t_token *tmp;
-    
-    tmp = tokens;
-    while(tmp)
-    {
-        if (tmp->type == WORD)
-        {
-            tmp->value = expand_tildes(shell, tmp->value);
-            tmp->value = expand_var(shell, tmp->value);
-            tmp->value = expand_cmd_code(shell, tmp->value);
-            tmp->value = translation(tmp->value);
-        }
-        tmp = tmp->next;
-    }
+	t_token	*tmp;
+
+	tmp = tokens;
+	while (tmp)
+	{
+		if (tmp->type == WORD)
+		{
+			tmp->value = expand_tildes(shell, tmp->value);
+			tmp->value = expand_var(shell, tmp->value);
+			tmp->value = expand_cmd_code(shell, tmp->value);
+			tmp->value = translation(tmp->value);
+		}
+		tmp = tmp->next;
+	}
 }

@@ -6,16 +6,16 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 02:07:33 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/17 18:01:25 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 03:49:09 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 #include <sys/stat.h>
 
-static int is_directory(const char *path)
+static int	is_directory(const char *path)
 {
-	struct stat path_stat;
+	struct stat	path_stat;
 
 	if (!path || !*path)
 		return (0);
@@ -24,7 +24,7 @@ static int is_directory(const char *path)
 	return (S_ISDIR(path_stat.st_mode));
 }
 
-static int print_dir_error(char *cmd)
+static int	print_dir_error(char *cmd)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	ft_putstr_fd(cmd, STDERR_FILENO);
@@ -32,9 +32,9 @@ static int print_dir_error(char *cmd)
 	return (126);
 }
 
-static void exec_cmd(t_shell *sh, t_cmd *cmd, char *path)
+static void	exec_cmd(t_shell *sh, t_cmd *cmd, char *path)
 {
-	char **exec_env;
+	char	**exec_env;
 
 	exec_env = env_build_arr(sh->env);
 	if (!exec_env)
@@ -45,20 +45,19 @@ static void exec_cmd(t_shell *sh, t_cmd *cmd, char *path)
 	}
 	execve(path, cmd->arguments, exec_env);
 	ft_free_array(exec_env);
-	// perror("minishell");
 	exit(EXEC_ERROR);
 }
 
-static void exec_child(t_shell *shell, t_cmd *cmd, char *path)
+static void	exec_child(t_shell *shell, t_cmd *cmd, char *path)
 {
 	if (setup_redirs(cmd) == -1)
 		exit(GENERAL_ERROR);
 	exec_cmd(shell, cmd, path);
 }
 
-static int wait_child(pid_t pid)
+static int	wait_child(pid_t pid)
 {
-	int status;
+	int	status;
 
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
@@ -66,7 +65,7 @@ static int wait_child(pid_t pid)
 	return (GENERAL_ERROR);
 }
 
-static int print_no_such_file(char *cmd)
+static int	print_no_such_file(char *cmd)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	ft_putstr_fd(cmd, STDERR_FILENO);
@@ -74,7 +73,7 @@ static int print_no_such_file(char *cmd)
 	return (127);
 }
 
-static int validate_path_command(char *cmd_path)
+static int	validate_path_command(char *cmd_path)
 {
 	if (access(cmd_path, F_OK) != 0)
 		return (print_no_such_file(cmd_path));
@@ -90,9 +89,9 @@ static int validate_path_command(char *cmd_path)
 	return (0);
 }
 
-static char *get_executable_path(t_shell *shell, char *cmd_name, int *error_code)
+static char	*get_executable_path(t_shell *shell, char *cmd_name, int *error_code)
 {
-	char *path;
+	char	*path;
 
 	*error_code = 0;
 	if (strchr(cmd_name, '/'))
@@ -119,9 +118,9 @@ static char *get_executable_path(t_shell *shell, char *cmd_name, int *error_code
 	return (path);
 }
 
-static int fork_and_execute(t_shell *shell, t_cmd *cmd, char *path)
+static int	fork_and_execute(t_shell *shell, t_cmd *cmd, char *path)
 {
-	pid_t pid;
+	pid_t	pid;
 
 	pid = fork();
 	if (pid == -1)
@@ -131,17 +130,16 @@ static int fork_and_execute(t_shell *shell, t_cmd *cmd, char *path)
 	}
 	if (pid == 0)
 	{
-		// setup_child_signals();
 		exec_child(shell, cmd, path);
 	}
 	return (wait_child(pid));
 }
 
-int exec_external(t_shell *shell, t_cmd *cmd)
+int	exec_external(t_shell *shell, t_cmd *cmd)
 {
-	char *path;
-	int error_code;
-	int exit_status;
+	char	*path;
+	int		error_code;
+	int		exit_status;
 
 	if (!cmd->arguments[0])
 		return (0);
