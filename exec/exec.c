@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 02:08:15 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 03:55:38 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 18:20:27 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,11 @@ static int	choose_exec_mode(t_shell *shell, t_cmd *cmd)
 int	check_all_redirs(t_redir_ordered *redir)
 {
 	int	fd;
-
+	int flags;
+	
 	while (redir)
 	{
-		if (redir->redirect == 1) // entrée
+		if (redir->redirect == 1)
 		{
 			fd = open(redir->filename, O_RDONLY);
 			if (fd < 0)
@@ -69,9 +70,9 @@ int	check_all_redirs(t_redir_ordered *redir)
 			}
 			close(fd);
 		}
-		else // sortie
+		else
 		{
-			int flags = O_WRONLY | O_CREAT;
+			flags = O_WRONLY | O_CREAT;
 			if (redir->append)
 				flags |= O_APPEND;
 			else

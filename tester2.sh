@@ -226,7 +226,7 @@ read_tests() {
         else
             test="${test}${line}"$'\n'
         fi
-    done < basic.txt  # ← C’est ici qu’on lit le fichier
+    done < tmp.txt  # ← C’est ici qu’on lit le fichier
     if [[ -n "$test" ]]; then
         TESTS+=("$test")
     fi

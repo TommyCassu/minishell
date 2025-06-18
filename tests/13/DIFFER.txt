@@ -8,8 +8,6 @@
 
 ABC=hola
 
-echo $9HOME
-
 $HOMEdskjhfkdshfsd
 
 $DONTEXIST
@@ -80,28 +78,36 @@ cat Makefile
 
 /bin/env
 
-history
-
 pwd -p
 
 pwd --p
 
 pwd ---p
 
-cd //
-pwd
+cd --
 
 cd ---
+
+unset HOME
+cd $HOME
 
 unset HOME
 export HOME=
 cd
 
-unset HOME
-export HOME
-cd
+mkdir a
+mkdir a/b
+cd a/b
+rm -r ../../a
+cd ..
+
+mkdir a
+mkdir a/b
+cd a/b
+rm -r ../../a
+pwd
 
 echo que tal >> bonjour
 cat bonjour
-rm dir/bonjour
+rm bonjour
 

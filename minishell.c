@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 09:24:32 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/17 18:39:45 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 18:33:25 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 static int init_shell(t_shell *sh, char **envp)
 {
-	char *shlvl_str;
-	char *new_shlvl_str;
-	int shlvl;
+	char	*shlvl_str;
+	char	*new_shlvl_str;
+	int		shlvl;
 
 	sh->env = env_init(envp);
 	if (!sh->env)
 		return (-1);
 	sh->global_status = 0;
+	sh->should_exit = 0;
 	shlvl_str = env_get(sh->env, "SHLVL");
 	if (shlvl_str)
 		shlvl = ft_atoi(shlvl_str) + 1;
@@ -54,10 +55,10 @@ void	cleanup_shell(t_env_var *env)
 
 int	main(int argc, char **argv, char **envp)
 {
-	char *input;
-	t_token *tokens;
-	t_cmd *cmd;
-	t_shell sh;
+	char	*input;
+	t_token	*tokens;
+	t_cmd	*cmd;
+	t_shell	sh;
 
 	(void)argc;
 	(void)argv;
@@ -68,7 +69,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	setup_signals_interactive();
 	sh.curr_line = 1;
-	while (sh.global_status !=  -200)
+	while (!sh.should_exit)
 	{
 		input = readline("minishell$ ");
 		if (!input)
@@ -86,7 +87,7 @@ int	main(int argc, char **argv, char **envp)
 			cmd = parse_cmd(tokens, &sh);
 			setup_signals_execution();
 			if (cmd)
-				sh.global_status =  exec_command(&sh, cmd);
+				sh.global_status = exec_command(&sh, cmd);
 			setup_signals_interactive();
 			ft_free_cmd_list(cmd);
 		}
@@ -94,5 +95,5 @@ int	main(int argc, char **argv, char **envp)
 	}
 	cleanup_shell(sh.env);
 	rl_clear_history();
-	return (0);
+	return (sh.global_status);
 }

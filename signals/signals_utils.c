@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   signals_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 20:32:45 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 17:49:18 by tcassu           ###   ########.fr       */
+/*   Created: 2025/06/18 18:05:05 by tcassu            #+#    #+#             */
+/*   Updated: 2025/06/18 18:05:29 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_clean(t_token *tokens)
+void	setup_heredoc_signals(void)
 {
-	t_token	*tmp;
+	struct sigaction	sa;
 
-	if (tokens)
-	{
-		while (tokens)
-		{
-			tmp = tokens;
-			tokens = tokens->next;
-			free(tmp->value);
-			free(tmp);
-		}
-	}
+	g_signal_received = 0;
+	sa.sa_handler = handle_sigint_heredoc;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
+	sigaction(SIGINT, &sa, NULL);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+void	setup_signals_child(void)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+}
+
+void	reset_signals(void)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 }

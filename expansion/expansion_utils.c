@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 00:53:25 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 03:51:49 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 14:36:09 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,6 @@ char	*ft_strjoin_free(char *s1, const char *s2)
 
 	result = ft_strjoin(s1, s2);
 	free (s1);
-	return (result);
-}
-
-char	*replace_cmd_code(char *value, char *code)
-{
-	char	*result;
-	char	tmp[2];
-	int		i;
-
-	i = 0;
-	result = ft_strdup("");
-	while (value[i])
-	{
-		if (value[i] == '$' && value[i + 1] == '?')
-		{
-			result = ft_strjoin_free(result, code);
-			i += 2;
-		}
-		else
-		{
-			tmp[0] = value[i];
-			tmp[1] = '\0';
-			result = ft_strjoin_free(result, tmp);
-			i++;
-		}
-	}
 	return (result);
 }
 

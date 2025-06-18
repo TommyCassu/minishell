@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 21:05:37 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 03:53:06 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 17:03:58 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,17 @@ char	*expand_tildes(t_shell *shell, char *value)
 	return (value);
 }
 
-char	*expand_cmd_code(t_shell *shell, char *value)
-{
-	char	*code;
-	char	*result;
-
-	code = ft_itoa(shell->global_status);
-	result = replace_cmd_code(value, code);
-	free(code);
-	free(value);
-	return (result);
-}
-
 void	expand_one(t_shell *shell, const char *value, char **exp, int *skip)
 {
 	if (value[1] == '{')
 		expand_brace(shell, value, exp, skip);
 	else if (ft_isalpha(value[1]) || value[1] == '_')
 		expand_simple(shell, value, exp, skip);
+	else if (ft_isdigit(value[1]) != 0)
+	{
+		*exp = ft_strdup("");
+		*skip = 2;
+	}
 	else
 	{
 		*exp = ft_strdup("$");
@@ -61,11 +54,20 @@ void	expand_one(t_shell *shell, const char *value, char **exp, int *skip)
 	}
 }
 
+void	handle_char(char *value, char **new_value, int *i)
+{
+	char	tmp[2];
+
+	tmp[0] = value[*i];
+	tmp[1] = '\0';
+	*new_value = ft_strjoin_free(*new_value, tmp);
+	(*i)++;
+}
+
 char	*expand_var(t_shell *shell, char *value)
 {
 	char	*new_value;
 	char	*expansion;
-	char	tmp[2];
 	int		skip;
 	int		i;
 
@@ -81,12 +83,7 @@ char	*expand_var(t_shell *shell, char *value)
 			i += skip;
 		}
 		else
-		{
-			tmp[0] = value[i];
-			tmp[1] = '\0';
-			new_value = ft_strjoin_free(new_value, tmp);
-			i++;
-		}
+			handle_char(value, &new_value, &i);
 	}
 	free(value);
 	return (new_value);
@@ -99,7 +96,13 @@ void	expansion(t_shell *shell, t_token *tokens)
 	tmp = tokens;
 	while (tmp)
 	{
-		if (tmp->type == WORD)
+		if (tmp->type == HEREDOC && tmp->next->type == WORD)
+		{
+			tmp = tmp->next;
+			tmp = tmp->next;
+			continue ;
+		}
+		else if (tmp->type == WORD)
 		{
 			tmp->value = expand_tildes(shell, tmp->value);
 			tmp->value = expand_var(shell, tmp->value);

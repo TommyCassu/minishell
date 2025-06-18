@@ -131,11 +131,15 @@ echo ' $ ' | cat -e
 
 echo $HOME
 
+echo my shit terminal is [$TERM]
+
 echo my shit terminal is [$TERM4
 
 echo my shit terminal is [$TERM4]
 
 echo $HOME9
+
+echo $9HOME
 
 echo $HOME%
 
@@ -589,6 +593,10 @@ cd "$PWD/srcs"
 
 cd '$PWD/srcs'
 
+unset HOME
+export HOME
+cd
+
 cd minishell Docs crashtest.c
 
 cd / | echo $?
@@ -599,18 +607,6 @@ cd ~
 cd ~/
 
 cd ~/ | echo $?
-pwd
-
-mkdir a
-mkdir a/b
-cd a/b
-rm -r ../../a
-cd ..
-
-mkdir a
-mkdir a/b
-cd a/b
-rm -r ../../a
 pwd
 
 mkdir a
@@ -1073,6 +1069,11 @@ echo hola > a > b > c
 cat a
 cat b
 cat c
+
+mkdir dir
+ls -la > dir/bonjour
+cat dir/bonjour
+rm dir/bonjour
 
 <a
 cat a

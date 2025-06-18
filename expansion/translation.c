@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 16:11:37 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 03:54:14 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/18 17:03:54 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*translation(char	*value)
 	i = 0;
 	j = 0;
 	size = ft_new_size(value);
-	new_value = malloc(sizeof(char) * size + 1);
+	new_value = malloc(sizeof(char) * (size + 1));
 	while (value[i])
 	{
 		if (check_in_quote(value, i) == 0)
