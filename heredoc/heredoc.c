@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 19:57:51 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 15:59:04 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 01:02:12 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ char	*ft_heredoc(t_shell *shell, char *eof)
 	int		interupt;
 
 	stdin_backup = dup(STDIN_FILENO);
-	setup_heredoc_signals();
 	new_value = ft_strdup("");
 	interupt = heredoc_loop(shell, &new_value, eof, shell->curr_line);
 	if (interupt)

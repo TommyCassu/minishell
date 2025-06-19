@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:58:31 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 21:01:59 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 01:13:46 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,34 @@ void	exec_child(t_shell *shell, t_cmd *cmd, char *path)
 	exec_cmd(shell, cmd, path);
 }
 
+int	get_wait_exit_status(int status)
+{
+	int	sig;
+
+	if (WIFEXITED(status))
+		return (WIFEXITED(status));
+	else if (WIFSIGNALED(status))
+	{
+		sig = WTERMSIG(status);
+		return (128 + sig);
+	}
+	return (1);
+}
+
 int	wait_child(pid_t pid)
 {
 	int	status;
 
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
-		return (WEXITSTATUS(status));
-	return (GENERAL_ERROR);
+	{
+		write(STDOUT_FILENO, "\n", 1);
+		return (130);
+	}
+	else if (WTERMSIG(status) == SIGQUIT)
+	{
+		write(STDOUT_FILENO, "Quit (core dumped)\n", 19);
+		return (131);
+	}
+	return (get_wait_exit_status(status));
 }

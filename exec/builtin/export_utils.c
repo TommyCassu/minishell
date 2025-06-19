@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 21:03:15 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 21:04:35 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/19 22:16:16 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_declared_var(void *data)
 		return ;
 	ft_putstr_fd("declare -x ", STDOUT_FILENO);
 	ft_putstr_fd(var->name, STDOUT_FILENO);
-	if (var->value && var->value[0] != '\0')
+	if (var->value != NULL)
 	{
 		ft_putstr_fd("=\"", STDOUT_FILENO);
 		ft_putstr_fd(var->value, STDOUT_FILENO);

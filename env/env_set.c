@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 03:42:47 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 23:53:35 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/19 22:12:32 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static	t_env_var	*create_env_var(const char *name, const char *value)
 		}
 	}
 	else
-		var->value = ft_strdup("\0");
+		var->value = NULL;
 	return (var);
 }
 

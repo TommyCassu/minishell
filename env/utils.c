@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 03:44:17 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 03:45:11 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/19 22:10:23 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ t_env_var	*ft_lstnew_env(const char *name, const char *value)
 	if (!list)
 		return (NULL);
 	list->name = ft_strdup(name);
-	list->value = ft_strdup(value);
+	if (value)
+		list->value = ft_strdup(value);
+	else
+		list->value = NULL;
 	list->next = NULL;
 	return (list);
 }
