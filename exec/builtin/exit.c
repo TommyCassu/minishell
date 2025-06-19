@@ -6,31 +6,11 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 03:45:49 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/20 01:14:26 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 01:18:20 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-int	ft_countoperator(char *str)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		if (str[i] == '-' || str[i] == '+')
-		{
-			count++;
-			if (count >= 2)
-				return (0);
-		}
-		i++;
-	}
-	return (1);
-}
 
 int	legal_number(char *string, long *result)
 {

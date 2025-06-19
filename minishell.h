@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/20 00:58:45 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 01:18:47 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ int			builtin_cd(t_shell *shell, t_cmd *cmd);
 int			builtin_exit(t_shell *shell, t_cmd *cmd);
 int			is_option(char *arg);
 long		ft_atol(const char *str);
+int			ft_countoperator(char *str);
 int			compare_to_long_limits(const char *str);
 int			legal_number(char *string, long *result);
 int			builtin_pwd(t_shell *shell, char **arguments);
