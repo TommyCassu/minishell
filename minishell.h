@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 21:49:28 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/19 13:33:55 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,6 @@ int			syntax_error(t_shell *shell, const char *value);
 /* Parsing cmd manager */
 void		init_cmd(t_cmd *cmd);
 void		add_arg(t_cmd *cmd, char *value);
-void		print_cmd(t_cmd *cmd);
 void		add_l_red(t_cmd *cmd, t_token **tokens);
 void		add_r_red(t_cmd *cmd, t_token **tokens);
 void		add_app_red(t_cmd *cmd, t_token **tokens);
