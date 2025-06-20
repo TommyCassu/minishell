@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 19:57:51 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/20 01:02:12 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 23:31:43 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	heredoc_loop(t_shell *shell, char **new_value, char	*eof, int start)
 		gnlreturn = get_next_line(0);
 		if (g_signal_received == SIGINT)
 		{
+			g_signal_received = 0;
 			heredoc_cleanup(-1, *new_value, gnlreturn, eof);
 			return (1);
 		}
@@ -88,7 +89,11 @@ char	*ft_heredoc(t_shell *shell, char *eof)
 	new_value = ft_strdup("");
 	interupt = heredoc_loop(shell, &new_value, eof, shell->curr_line);
 	if (interupt)
+	{
+		dup2(stdin_backup, STDIN_FILENO);
+		close(stdin_backup);
 		return (NULL);
+	}
 	heredoc_cleanup(stdin_backup, NULL, NULL, eof);
 	return (new_value);
 }

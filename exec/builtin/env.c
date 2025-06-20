@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 03:45:35 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 03:45:36 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 23:41:06 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	env_var_is_env_visible(void *var_ptr)
 	var = (t_env_var *)var_ptr;
 	if (!var || !var->name)
 		return (0);
-	if (!var->value || var->value[0] == '\0')
+	if (!var->value)
 		return (0);
 	return (1);
 }

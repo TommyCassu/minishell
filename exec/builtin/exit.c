@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 03:45:49 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/20 01:18:20 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 23:48:17 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	builtin_exit(t_shell *sh, t_cmd *cmd)
 	int	exit_value;
 	int	too_many_args;
 
+	if (cmd->next_pipe || cmd->previous_pipe)
+		return (0);
 	ft_putendl_fd("exit", STDERR_FILENO);
 	exit_value = get_exitstat(cmd->arguments, sh, &too_many_args);
 	if (too_many_args)

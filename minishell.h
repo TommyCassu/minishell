@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:06:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/20 15:37:18 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 23:37:42 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ int			builtin_exit(t_shell *shell, t_cmd *cmd);
 int			is_option(char *arg);
 long		ft_atol(const char *str);
 int			ft_countoperator(char *str);
+int			ft_check_only_numeric(const char *str);
 int			compare_to_long_limits(const char *str);
 int			legal_number(char *string, long *result);
 int			builtin_pwd(t_shell *shell, char **arguments);
@@ -265,5 +266,9 @@ void		handle_sigint_interactive(int sig);
 void		reset_signals(void);
 
 void		print_file_error(const char *file);
+
+char		*handle_oldpwd(t_shell *sh);
+void		print_chdir_error(char *path);
+void		update_pwd_vars(t_shell *sh);
 
 #endif

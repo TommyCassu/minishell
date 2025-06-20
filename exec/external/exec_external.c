@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 02:07:33 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/20 15:23:03 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 23:45:43 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,19 @@ int	exec_external(t_shell *shell, t_cmd *cmd)
 	char	*path;
 	int		error_code;
 	int		exit_status;
+	char	*tmp;
 
+	tmp = NULL;
 	if (!cmd->arguments[0])
 		return (0);
+	tmp = env_get(shell->env, "PATH");
+	if (!tmp)
+	{
+		ft_putstr_fd("minishell: ", STDERR_FILENO);
+		ft_putstr_fd(cmd->arguments[0], STDERR_FILENO);
+		ft_putendl_fd(": No such file or directory", STDERR_FILENO);
+		return (127);
+	}
 	path = get_executable_path(shell, cmd->arguments[0], &error_code);
 	if (!path)
 		return (error_code);

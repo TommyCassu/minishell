@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 18:01:02 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/20 16:20:49 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 23:31:01 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	handle_sigint_heredoc(int sig)
 	(void)sig;
 	g_signal_received = SIGINT;
 	write(STDOUT_FILENO, "\n", 1);
-	close(STDIN_FILENO);
 }
 
 /* Signal setup functions */

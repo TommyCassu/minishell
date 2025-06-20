@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 21:34:54 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/20 01:17:47 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 23:18:40 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	compare_to_long_limits(const char *str)
 	max_str = "9223372036854775807";
 	min_str = "9223372036854775808";
 	num = normalize_number(str, &sign);
+	if (ft_check_only_numeric(num))
+		return (1);
 	if (sign == 1)
 		cmp = compare_number_str(num, max_str);
 	else

@@ -6,11 +6,25 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 20:32:45 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/20 01:20:51 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 23:44:04 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	ft_check_only_numeric(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isalpha(str[i]) != 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 void	ft_clean(t_token *tokens)
 {

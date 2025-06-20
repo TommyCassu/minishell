@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 02:07:43 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/20 16:20:18 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 23:04:28 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static int	wait_pipeline(pid_t last_pid, int n_cmds)
 	{
 		if (wait(&status) == -1)
 		{
-			perror("wait");
 			break ;
 		}
 		if (wait(&status) == last_pid)
