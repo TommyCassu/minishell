@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 02:07:43 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/20 01:13:21 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 16:20:18 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,28 @@ static void	update_pipe_fd(int *in_fd, int pipefd[2])
 /* Wait for all child processes and return last exit status */
 static int	wait_pipeline(pid_t last_pid, int n_cmds)
 {
-	int		status;
-	int		last_status;
-	int		i;
-	pid_t	finished_pid;
+	int	status;
+	int	last_status;
+	int	i;
 
 	last_status = 0;
 	i = 0;
 	while (i < n_cmds)
 	{
-		finished_pid = wait(&status);
-		if (finished_pid == last_pid && WIFEXITED(status))
-			last_status = WEXITSTATUS(status);
+		if (wait(&status) == -1)
+		{
+			perror("wait");
+			break ;
+		}
+		if (wait(&status) == last_pid)
+		{
+			if (WIFEXITED(status))
+				last_status = WEXITSTATUS(status);
+			else if (WIFSIGNALED(status))
+				last_status = 128 + WTERMSIG(status);
+			else
+				last_status = 1;
+		}
 		i++;
 	}
 	return (last_status);

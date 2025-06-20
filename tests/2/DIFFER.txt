@@ -1,0 +1,68 @@
+unset HOME
+cd $HOME
+pwd
+
+unset HOME
+export HOME=
+cd
+pwd
+
+unset PATH
+ls
+
+pwd
+unset PWD
+env | grep PWD
+cd $PWD
+pwd
+
+unset PATH
+cat Makefile
+
+/bin/env
+
+export HOLA=" bonjour hey "
+echo $HOLA | cat -e
+
+export HOLA=" bonjour hey "
+echo ""$HOLA"" | cat -e
+
+export HOLA=" bonjour hey "
+echo wesh"$HOLA" | cat -e
+
+export HOLA="s -la"
+l$HOLA
+
+export HOLA="l"
+$HOLAs
+
+export HOLA="l"
+"$HOLA"s
+
+export HOL=A=bonjour
+env
+
+export HOL=A=""
+env | grep HOL
+
+export HOLA=""bonjour ""
+echo $HOLA | cat -e
+
+export HOLA="" -n bonjour ""
+echo $HOLA
+
+export HOLA='""'
+echo "" $HOLA "" | cat -e
+
+export HOLA9=bonjour
+env | grep HOLA9
+
+export _HOLA=bonjour
+env | grep _HOLA
+
+export ___HOLA=bonjour
+env | grep ___HOLA
+
+export _HO_LA_=bonjour
+env | grep _HO_LA_
+

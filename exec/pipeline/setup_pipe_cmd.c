@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 02:07:46 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 23:59:02 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 16:20:26 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	exec_pipe_cmd(t_shell *shell, t_cmd *cmd, int in_fd, int pipefd[2])
 {
 	int	exit_code;
 
+	setup_signals_child();
 	setup_pipe_input(in_fd);
 	setup_pipe_output(cmd, pipefd);
 	exit_code = exec_cmd_type(shell, cmd);

@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:58:31 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/20 01:20:42 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 16:17:29 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	get_wait_exit_status(int status)
 	int	sig;
 
 	if (WIFEXITED(status))
-		return (WIFEXITED(status));
+		return (WEXITSTATUS(status));
 	else if (WIFSIGNALED(status))
 	{
 		sig = WTERMSIG(status);
@@ -60,17 +60,16 @@ int	get_wait_exit_status(int status)
 int	wait_child(pid_t pid)
 {
 	int	status;
+	int	sig;
 
 	waitpid(pid, &status, 0);
-	if (WIFEXITED(status))
+	if (WIFSIGNALED(status))
 	{
-		write(STDOUT_FILENO, "\n", 1);
-		return (130);
-	}
-	else if (WTERMSIG(status) == SIGQUIT)
-	{
-		write(STDOUT_FILENO, "Quit (core dumped)\n", 19);
-		return (131);
+		sig = WTERMSIG(status);
+		if (sig == SIGINT)
+			write(STDOUT_FILENO, "\n", 1);
+		else if (sig == SIGQUIT)
+			write(STDOUT_FILENO, "Quit (core dumped)\n", 19);
 	}
 	return (get_wait_exit_status(status));
 }

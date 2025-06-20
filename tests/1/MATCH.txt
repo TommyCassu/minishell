@@ -1,0 +1,202 @@
+cd $HOME/42_works
+pwd
+
+cd "$PWD/srcs"
+pwd
+
+cd '$PWD/srcs'
+pwd
+
+unset HOME
+export HOME
+cd
+pwd
+
+cd minishell Docs crashtest.c
+cd / | echo $?
+pwd
+
+cd ~
+pwd
+
+cd ~/
+pwd
+
+cd ~/ | echo $?
+pwd
+
+export HOLA=p
+export BYE=w
+$HOLA"BYE"d
+
+export HOLA=p
+export BYE=w
+"$HOLA"'$BYE'd
+
+export HOLA=p
+export BYE=w
+"$HOLA""$BYE"d
+
+export HOLA=p
+export BYE=w
+$"HOLA"$"BYE"d
+
+export HOLA=p
+export BYE=w
+$'HOLA'$'BYE'd
+
+export HOLA=-n
+"echo $HOLA" hey
+
+unset PATH
+echo $PATH
+
+unset ""
+unset INEXISTANT
+
+unset PWD
+env | grep PWD
+pwd
+
+unset PATH
+echo $PATH
+
+export HOLA="cat Makefile | grep NAME"
+echo $HOLA
+
+export HOLA=hey
+
+echo $HOLA$HOLA$HOLA=hey$HOLA
+
+export HOLA=" bonjour hey "
+echo wesh""$HOLA.
+
+export HOLA=" bonjour hey "
+echo wesh$""HOLA.
+
+export HOLA=" bonjour hey "
+echo wesh$"HOLA HOLA".
+
+export HOLA=bonjour
+
+export HOLA=" hola et $HOLA"
+echo $HOLA
+
+export HOLA=bonjour
+
+export HOLA=' hola et $HOLA'
+
+echo $HOLA
+
+export HOLA=bonjour
+
+export HOLA=" hola et $HOLA"$HOLA
+
+echo $HOLA
+
+export HOLA="ls -l - a"
+echo $HOLA
+
+export HOLA="s -la"
+l"$HOLA"
+
+export HOLA="s -la"
+l'$HOLA'
+
+export HOLA="l"
+'$HOLA's
+
+export HOLA=bonjour=casse-toi
+echo $HOLA
+
+export ""HOLA=bonjour""=casse-toi
+echo $HOLA
+
+export HOLA=bonjour
+export BYE=casse-toi
+echo $HOLA et $BYE
+
+export HOLA=bonjour BYE=casse-toi
+echo $HOLA et $BYE
+
+export HOLA=""bonjour ""/
+echo $HOLA
+
+exit
+
+exit 42
+
+exit 000042
+
+exit 666
+
+exit 666 666
+
+exit -666 666
+
+exit 666 666 666 666
+
+exit 666 hola 666
+
+exit 259
+
+exit -4
+
+exit -42
+
+exit -0000042
+
+exit -259
+
+exit -666
+
+exit +666
+
+exit 0
+
+exit +0
+
+exit -0
+
+exit +42
+
+exit -69 -96
+
+exit --666
+
+exit ++++666
+
+exit ++++++0
+
+exit ------0
+
+exit "666"
+
+exit '666'
+
+exit '-666'
+
+exit '+666'
+
+exit '----666'
+
+exit '++++666'
+
+exit '6'66
+
+exit '2'66'32'
+
+exit '666'"666"666
+
+exit +'666'"666"666
+
+exit -'666'"666"666
+
+exit 9223372036854775807
+
+exit 9223372036854775808
+
+exit -9223372036854775808
+
+exit -9223372036854775809
+

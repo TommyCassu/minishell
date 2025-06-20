@@ -1,0 +1,131 @@
+unset HOME
+cd $HOME
+pwd
+
+unset HOME
+export HOME=
+cd
+pwd
+
+export HOLA=bonjour
+env | grep HOLA
+unset HOLA
+env | grep HOLA
+
+export HOLA=bonjour
+env | grep HOLA
+unset HOLA
+unset HOLA
+env | grep HOLA
+
+unset PATH
+ls
+
+pwd
+unset PWD
+env | grep PWD
+cd $PWD
+pwd
+
+unset OLDPWD
+env | grep OLDPWD
+
+unset "" HOLA
+env | grep HOLA
+
+unset PATH
+cat Makefile
+
+/bin/env
+
+export HOLA=" bonjour hey "
+echo $HOLA | cat -e
+
+export HOLA=" bonjour hey "
+echo ""$HOLA"" | cat -e
+
+export HOLA=" bonjour hey "
+echo wesh"$HOLA" | cat -e
+
+export HOLA="s -la"
+l$HOLA
+
+export HOLA="l"
+$HOLAs
+
+export HOLA="l"
+"$HOLA"s
+
+export HOL=A=bonjour
+env
+
+export HOL=A=""
+env | grep HOL
+
+export TE+S=T
+env | grep TE+S
+
+export $HOLA=bonjour
+env | grep bonjour
+
+export HOLA=""bonjour ""
+echo $HOLA | cat -e
+
+export HOLA="" -n bonjour ""
+echo $HOLA
+
+export HOLA='""'
+echo "" $HOLA "" | cat -e
+
+export HOLA9=bonjour
+env | grep HOLA9
+
+export _HOLA=bonjour
+env | grep _HOLA
+
+export ___HOLA=bonjour
+env | grep ___HOLA
+
+export _HO_LA_=bonjour
+env | grep _HO_LA_
+
+export HO$?LA=bonjour
+env | grep HOLA
+
+export HOLA=bon jour
+env | grep HOLA
+
+export HOLA= bonjour
+env | grep HOLA
+
+export HOLA=bonsoir
+export HOLA=bonretour
+export HOLA=bonjour
+env | grep HOLA
+
+export HOLA=$HOME
+env | grep	HOLA
+
+export HOLA=bonjour$HOME
+env | grep HOLA
+
+export HOLA=$HOMEbonjour
+env | grep HOLA
+
+export HOLA=bon$jour
+env | grep HOLA
+
+exit exit
+
+exit hola
+
+exit hola que tal
+
+exit hola 666
+
+exit hola 666 666
+
+exit "'666'"
+
+exit '"666"'
+

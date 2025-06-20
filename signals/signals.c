@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 18:01:02 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/20 00:55:47 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 16:20:49 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ void	handle_sigquit_execution(int sig)
 {
 	(void)sig;
 	write(STDOUT_FILENO, "Quit (core dumped)\n", 19);
+}
+
+void	handle_sigint_heredoc(int sig)
+{
+	(void)sig;
+	g_signal_received = SIGINT;
+	write(STDOUT_FILENO, "\n", 1);
+	close(STDIN_FILENO);
 }
 
 /* Signal setup functions */
@@ -61,12 +69,4 @@ void	setup_signals_execution(void)
 	sigemptyset(&sa_quit.sa_mask);
 	sa_quit.sa_flags = SA_RESTART;
 	sigaction(SIGQUIT, &sa_quit, NULL);
-}
-
-void	handle_sigint_heredoc(int sig)
-{
-	(void)sig;
-	g_signal_received = SIGINT;
-	write(STDOUT_FILENO, "\n", 1);
-	close(STDIN_FILENO);
 }

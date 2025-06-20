@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 02:07:33 by tcassu            #+#    #+#             */
-/*   Updated: 2025/06/18 21:02:15 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/06/20 15:23:03 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static int	fork_and_execute(t_shell *shell, t_cmd *cmd, char *path)
 	}
 	if (pid == 0)
 	{
+		setup_signals_child();
 		exec_child(shell, cmd, path);
 	}
 	return (wait_child(pid));
